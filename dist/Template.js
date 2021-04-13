@@ -843,7 +843,7 @@ return container(`
   ${printOrderDetails(orderID, projectName, servicePriority, "N/A")}
 
   ${paragraph(`
-    Your proof is attached. Please check it carefully and seed us your approval if everything is correct.
+    Your proof is attached. Please check it carefully and sebd us your approval if everything is correct.
   `)}
 
   ${paragraph(`
@@ -864,7 +864,7 @@ return container(`
     <strong>Warning about colour printing:</strong>
     if your job will be printed in colour, and you need to check the exact colours that will be
     printed, then you should contact us to arrange a <em>production proof</em>. (Your screen
-    and printer cannot accurately reproduce the colours on the final product.)`)}
+    and printer cannot accurately reproduce the colours of the final product.)`)}
 
   <div style="text-align:center">
     ${paragraph(`
