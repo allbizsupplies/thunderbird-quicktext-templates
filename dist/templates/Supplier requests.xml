@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<quicktext version="2">
+<filetype>templates</filetype>
+<menu>
+<title><![CDATA[Supplier requests]]></title>
+<texts>
+<text shortcut="" type="1">
+<name><![CDATA[Quote request]]></name>
+<subject><![CDATA[Price and availability]]></subject>
+<body><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[ETA request]]></name>
+<subject><![CDATA[ETA for purchase order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|supplier_requests__QuoteRequest]]]]></body>
+</text>
+</texts>
+</menu>
+</quicktext>

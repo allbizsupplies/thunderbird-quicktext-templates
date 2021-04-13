@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<quicktext version="2">
+<filetype>templates</filetype>
+<menu>
+<title><![CDATA[Stat order notifications]]></title>
+<texts>
+<text shortcut="" type="1">
+<name><![CDATA[Order ready to collect]]></name>
+<subject><![CDATA[Your order is ready to collect]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Remaining order items dispatched]]></name>
+<subject><![CDATA[Part of your order has been dispatched]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Quotation]]></name>
+<subject><![CDATA[Quotation]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__QuotationAttached]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Update purchase order]]></name>
+<subject><![CDATA[Update purchase order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__UpdatePurchaseOrder]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Web order payment required]]></name>
+<subject><![CDATA[Payment required for web order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__WebOrderPaymentRequired]]]]></body>
+</text>
+</texts>
+</menu>
+</quicktext>

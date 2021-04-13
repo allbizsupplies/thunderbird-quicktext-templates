@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<quicktext version="2">
+<filetype>templates</filetype>
+<menu>
+<title><![CDATA[Account notifications]]></title>
+<texts>
+<text shortcut="" type="1">
+<name><![CDATA[About Allbiz Supplies]]></name>
+<subject><![CDATA[About Allbiz Supplies]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__AboutAllbiz]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Credit account application]]></name>
+<subject><![CDATA[Credit account application]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__AccountApplication]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Credit account opened]]></name>
+<subject><![CDATA[Credit account opened]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__CreditAccountOpened]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Invoice]]></name>
+<subject><![CDATA[Invoice]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__InvoiceArrached]]]]></body>
+</text>
+</texts>
+</menu>
+</quicktext>

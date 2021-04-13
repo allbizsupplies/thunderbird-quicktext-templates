@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<quicktext version="2">
+<filetype>templates</filetype>
+<menu>
+<title><![CDATA[Print order notifications]]></title>
+<texts>
+<text shortcut="" type="1">
+<name><![CDATA[Awaiting information]]></name>
+<subject><![CDATA[We need more info so we can start your order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingInformation]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Awaiting print ready files]]></name>
+<subject><![CDATA[Please send print-ready PDF files so we can start your order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingPrintReadyFiles]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Deposit required]]></name>
+<subject><![CDATA[Deposit required for your order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__DepositRequired]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Hardcopy proof ready]]></name>
+<subject><![CDATA[Hardcopy proof is ready to view]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__HardcopyProofReady]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[In production]]></name>
+<subject><![CDATA[We are making your order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__InProduction]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Order dispatched]]></name>
+<subject><![CDATA[We have dispatched your order]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderDispatched]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Order ready to collect]]></name>
+<subject><![CDATA[Your order is ready to collect]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderReadyToCollect]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Part order dispatched]]></name>
+<subject><![CDATA[Part of your order has been dispatched]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__PartOrderDispatched]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Proof approval required]]></name>
+<subject><![CDATA[Proof approval required]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__ProofApprovalRequired]]]]></body>
+</text>
+</texts>
+</menu>
+</quicktext>

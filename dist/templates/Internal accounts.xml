@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<quicktext version="2">
+<filetype>templates</filetype>
+<menu>
+<title><![CDATA[Internal accounts]]></title>
+<texts>
+<text shortcut="" type="1">
+<name><![CDATA[Account application]]></name>
+<subject><![CDATA[Account application]]></subject>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__AccountApplication]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Account cash payment]]></name>
+<subject><![CDATA[Account payment taken in cash]]></subject>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__AccountCashPayment]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Phone message]]></name>
+<subject><![CDATA[Phone message]]></subject>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__PhoneMessage]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Update customer contact details]]></name>
+<subject><![CDATA[Update customer contact details]]></subject>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerContactDetails]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Update customer delivery address]]></name>
+<subject><![CDATA[Update customer delivery address]]></subject>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryAddress]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Update customer delivery instructions]]></name>
+<subject><![CDATA[Update customer delivery instructions]]></subject>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryInstructions]]]]></body>
+</text>
+</texts>
+</menu>
+</quicktext>
