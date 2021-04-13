@@ -3,7 +3,6 @@
 from enum import Enum
 import os
 import re
-import settings
 import xml
 
 
