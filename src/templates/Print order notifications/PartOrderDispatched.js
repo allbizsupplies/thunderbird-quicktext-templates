@@ -1,5 +1,5 @@
 /**
- * name: Remaining order items dispatched
+ * name: Part order dispatched
  * subject: Part of your order has been dispatched
  */
 

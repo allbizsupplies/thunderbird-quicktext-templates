@@ -55,9 +55,15 @@ const getInputs = (fieldDefinitions) => {
   });
 };
 
-const encodeObject = (value) => "json:" + btoa(JSON.stringify(value));
+const encodeObject = (value) =>
+  this.mWindow
+    ? "json:" + this.mWindow.btoa(JSON.stringify(value))
+    : "json:" + btoa(JSON.stringify(value));
 
-const decodeObject = (value) => JSON.parse(atob(value.split(":")[1]));
+const decodeObject = (value) =>
+  this.mWindow
+    ? JSON.parse(this.mWindow.atob(value.split(":")[1]))
+    : JSON.parse(atob(value.split(":")[1]));
 
 const encodeMailUrl = function (mailTo, subject, body) {
   return `mailto:${mailTo}?subject=${encodeURIComponent(
@@ -79,7 +85,10 @@ const template = function (strings, ...values) {
 };
 
 const renderNode = function (node) {
-  if (node.nodeType === Node.ELEMENT_NODE) {
+  const ELEMENT_NODE = this.mWindow
+    ? this.mWindow.Node.ELEMENT_NODE
+    : Node.ELEMENT_NODE;
+  if (node.nodeType === ELEMENT_NODE) {
     const content = Array.from(node.childNodes)
       .map((node) => renderNode(node))
       .join("");
@@ -109,7 +118,7 @@ const parseNodeAttributes = function (node) {
 };
 
 const processTemplate = function (templateOutput) {
-  const parser = new DOMParser();
+  const parser = this.mWindow ? new this.mWindow.DOMParser() : new DOMParser();
   const doc = parser.parseFromString(templateOutput, "text/xml");
   const output = renderNode(doc.documentElement);
   return output;
@@ -254,13 +263,15 @@ const Components = {
   `,
 };
 
-if (exports) {
-  exports.servicePriorityOptions = servicePriorityOptions;
-  exports.template = template;
-  exports.processTemplate = processTemplate;
-  exports.renderTemplate = renderTemplate;
-  exports.Components = Components;
-  exports.encodeObject = encodeObject;
+if (this.mQuicktext === undefined) {
+  module.exports = {
+    servicePriorityOptions,
+    template,
+    processTemplate,
+    renderTemplate,
+    Components,
+    encodeObject,
+  };
 }
 const templates = {}
 
@@ -886,21 +897,56 @@ templates.print_order_notifications__PartOrderDispatched = () => {
  * subject: Part of your order has been dispatched
  */
 
-return template`
-  <heading>
-    We've dispatched part of your order
-  </heading>
+ const [orderNumber, shipmentType] = getInputs([
+  { label: "Order number" },
+  {
+    label: "Part order type",
+    options: [
+      { isRemainder: false, label: "This is the first part of the order" },
+      { isRemainder: true, label: "This is the final part of the order" },
+    ],
+  },
+]);
 
-  <p>
-    We've dispatched part of your order to make sure you get
-    your items as soon as possible.
-  </p>
+const { isRemainder } = shipmentType;
 
-  <p>
-    We will dispatch the remainder of your order once the items
-    are ready to ship.
-  </p>
-`;
+return isRemainder
+  ? template`
+    <heading>
+      We've dispatched the remainder of your order
+    </heading>
+
+    <block>
+      <p>
+        Order number: ${orderNumber}
+      </p>
+    </block>
+
+    <p>
+      We've dispatched the remaining items in your order.
+    </p>
+  `
+  : template`
+    <heading>
+      We've dispatched part of your order
+    </heading>
+
+    <block>
+      <p>
+        Order number: ${orderNumber}
+      </p>
+    </block>
+
+    <p>
+      We've dispatched part of your order to make sure you get
+      your items as soon as possible.
+    </p>
+
+    <p>
+      We will dispatch the remainder of your order once the items
+      are ready to ship.
+    </p>
+  `;
 
 };
 
@@ -1005,7 +1051,7 @@ return template`
 
 templates.stat_order_notifications__PartOrderDispatched = () => {
 /**
- * name: Remaining order items dispatched
+ * name: Part order dispatched
  * subject: Part of your order has been dispatched
  */
 
@@ -1023,7 +1069,7 @@ const [orderNumber, shipmentType] = getInputs([
 const { isRemainder } = shipmentType;
 
 return isRemainder
-  ? layout(`
+  ? template`
     <heading>
       We've dispatched the remainder of your order
     </heading>
@@ -1037,8 +1083,8 @@ return isRemainder
     <p>
       We've dispatched the remaining items in your order.
     </p>
-  `)
-  : layout(`
+  `
+  : template`
     <heading>
       We've dispatched part of your order
     </heading>
@@ -1210,4 +1256,4 @@ return template`
 
 };
 
-renderTemplate();
+return renderTemplate();
