@@ -203,7 +203,7 @@ const Components = {
             Your order's turnaround time:
             <strong>${attributes["service-priority"].label}</strong>
             ${
-              attributes["service-priority"]
+              attributes["service-priority"].description
                 ? `<span style="">${attributes["service-priority"].description}</span>`
                 : ""
             }
