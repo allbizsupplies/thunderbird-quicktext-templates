@@ -6,11 +6,9 @@ import re
 import xml
 
 
-COMMON_SCRIPTS = [
-    "variables",
-    "utils",
-    "components",
-]
+SRC_DIR = "./src"
+
+TEMPLATE_DIR = os.path.join(SRC_DIR, "templates")
 
 
 class TemplateType:
@@ -42,24 +40,23 @@ def collect_common_scripts():
 
 def compile_template_scripts(template_scripts):
     script = ""
-    for script_name in COMMON_SCRIPTS:
-        with open(os.path.join("./common", script_name + ".js"), "r") as file:
-            script += file.read()
-            script += "\n\n"
+    with open(os.path.join(SRC_DIR, "template.js"), "r") as file:
+        script += file.read()
     script += "const templates = {}\n\n"
     for template_script in template_scripts:
-        script += "templates." + template_script["name"] + " = () => {\n" + template_script["body"] + "\n};\n\n"
-    with open(os.path.join("./common", "render.js"), "r") as file:
-        script += file.read()
+        script += "templates." + \
+            template_script["name"] + \
+            " = () => {\n" + template_script["body"] + "\n};\n\n"
+    script += "renderTemplate();"
     return script
 
 
 def collect_templates():
     menus = []
     scripts = []
-    for menu_title in os.listdir("templates"):
+    for menu_title in os.listdir(TEMPLATE_DIR):
         texts = []
-        dirpath = os.path.join("templates", menu_title)
+        dirpath = os.path.join(TEMPLATE_DIR, menu_title)
         for filename in os.listdir(dirpath):
             filepath = os.path.join(dirpath, filename)
             script_name = snakecase(menu_title) + "__" + filename.split(".")[0]

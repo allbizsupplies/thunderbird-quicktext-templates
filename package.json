@@ -1,0 +1,13 @@
+{
+  "name": "thunderbird-quicktext-templates",
+  "version": "1.0.0",
+  "repository": "git@github.com:allbizsupplies/thunderbird-quicktext-templates.git",
+  "author": "Brad Treloar <brad.treloar@pm.me>",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
