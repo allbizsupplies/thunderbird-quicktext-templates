@@ -47,7 +47,7 @@ def compile_template_scripts(template_scripts):
         script += "templates." + \
             template_script["name"] + \
             " = () => {\n" + template_script["body"] + "\n};\n\n"
-    script += "renderTemplate();"
+    script += "return renderTemplate();"
     return script
 
 
