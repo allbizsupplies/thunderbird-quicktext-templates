@@ -254,11 +254,13 @@ const Components = {
   `,
 };
 
-if (exports) {
-  exports.servicePriorityOptions = servicePriorityOptions;
-  exports.template = template;
-  exports.processTemplate = processTemplate;
-  exports.renderTemplate = renderTemplate;
-  exports.Components = Components;
-  exports.encodeObject = encodeObject;
+if (this.mQuicktext === undefined) {
+  module.exports = {
+    servicePriorityOptions,
+    template,
+    processTemplate,
+    renderTemplate,
+    Components,
+    encodeObject,
+  }
 }
