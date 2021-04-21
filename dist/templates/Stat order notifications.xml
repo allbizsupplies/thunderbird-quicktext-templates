@@ -10,7 +10,7 @@
 <body><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect]]]]></body>
 </text>
 <text shortcut="" type="1">
-<name><![CDATA[Remaining order items dispatched]]></name>
+<name><![CDATA[Part order dispatched]]></name>
 <subject><![CDATA[Part of your order has been dispatched]]></subject>
 <body><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched]]]]></body>
 </text>
