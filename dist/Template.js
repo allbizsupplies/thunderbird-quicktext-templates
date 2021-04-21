@@ -598,7 +598,6 @@ const [deliveryInstructionsValue] = getInputs([
     ],
   },
 ]);
-
 const deliveryInstructions =
   deliveryInstructionsValue.label == "other"
     ? (deliveryInstructions = getInputs([{ label: "Delivery instructions" }]))
@@ -836,7 +835,7 @@ return template`
     order-id="${orderID}"
     project-name="${projectName}"
     service-priority="${servicePriority}"
-    estimated=completion-date="${estimatedCompletionDate}"
+    estimated-completion-date="${estimatedCompletionDate}"
   />
 `;
 
