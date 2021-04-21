@@ -49,7 +49,7 @@ return template`
       <button-link href="${encodeMailUrl(
         `print@allbizsupplies.biz`,
         `Proof approved for order ${orderID}`,
-        `I have checked the proof for ${orderID} and confirm that it is ready for production.`
+        `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
       )}">
         Approve proof
       </button-link>
