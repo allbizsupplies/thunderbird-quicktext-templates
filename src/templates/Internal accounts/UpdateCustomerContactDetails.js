@@ -22,8 +22,8 @@ return template`
 
   <p>
     <strong>New contact details:</strong><br />
-    <strong>Name:</strong>&nbsp;<br />
-    <strong>Phone:</strong>&nbsp;<br />
-    <strong>Email:</strong>&nbsp;
+    Name:<br />
+    Phone:<br />
+    Email:
   </p>
 `;
