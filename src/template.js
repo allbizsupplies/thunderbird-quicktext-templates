@@ -55,9 +55,15 @@ const getInputs = (fieldDefinitions) => {
   });
 };
 
-const encodeObject = (value) => "json:" + btoa(JSON.stringify(value));
+const encodeObject = (value) =>
+  this.mWindow
+    ? "json:" + this.mWindow.btoa(JSON.stringify(value))
+    : "json:" + btoa(JSON.stringify(value));
 
-const decodeObject = (value) => JSON.parse(atob(value.split(":")[1]));
+const decodeObject = (value) =>
+  this.mWindow
+    ? JSON.parse(this.mWindow.atob(value.split(":")[1]))
+    : JSON.parse(atob(value.split(":")[1]));
 
 const encodeMailUrl = function (mailTo, subject, body) {
   return `mailto:${mailTo}?subject=${encodeURIComponent(
@@ -79,7 +85,10 @@ const template = function (strings, ...values) {
 };
 
 const renderNode = function (node) {
-  if (node.nodeType === Node.ELEMENT_NODE) {
+  const ELEMENT_NODE = this.mWindow
+    ? this.mWindow.Node.ELEMENT_NODE
+    : Node.ELEMENT_NODE;
+  if (node.nodeType === ELEMENT_NODE) {
     const content = Array.from(node.childNodes)
       .map((node) => renderNode(node))
       .join("");
@@ -109,7 +118,7 @@ const parseNodeAttributes = function (node) {
 };
 
 const processTemplate = function (templateOutput) {
-  const parser = new DOMParser();
+  const parser = this.mWindow ? new this.mWindow.DOMParser() : new DOMParser();
   const doc = parser.parseFromString(templateOutput, "text/xml");
   const output = renderNode(doc.documentElement);
   return output;
@@ -262,5 +271,5 @@ if (this.mQuicktext === undefined) {
     renderTemplate,
     Components,
     encodeObject,
-  }
+  };
 }
