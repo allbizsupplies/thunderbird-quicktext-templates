@@ -17,7 +17,7 @@ const [orderNumber, shipmentType] = getInputs([
 const { isRemainder } = shipmentType;
 
 return isRemainder
-  ? layout(`
+  ? template`
     <heading>
       We've dispatched the remainder of your order
     </heading>
@@ -31,8 +31,8 @@ return isRemainder
     <p>
       We've dispatched the remaining items in your order.
     </p>
-  `)
-  : layout(`
+  `
+  : template`
     <heading>
       We've dispatched part of your order
     </heading>
