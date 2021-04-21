@@ -42,8 +42,7 @@ const getSelectInput = (label, options) => {
     "select",
     optionLabels.join(";"),
   ]);
-  const value = options.find(({ label }) => label == selectedOptionLabel);
-  return encodeObject(value);
+  return options.find(({ label }) => label == selectedOptionLabel);
 };
 
 const getInputs = (fieldDefinitions) => {
@@ -68,7 +67,7 @@ const decodeObject = (value) =>
 const encodeMailUrl = function (mailTo, subject, body) {
   return `mailto:${mailTo}?subject=${encodeURIComponent(
     subject
-  )}&body=${encodeURIComponent(body)}`;
+  )}&amp;amp;body=${encodeURIComponent(body)}`;
 };
 
 const template = function (strings, ...values) {
@@ -76,7 +75,8 @@ const template = function (strings, ...values) {
     const value = values[index];
     if (index < values.length) {
       if (value instanceof Object || value instanceof Array) {
-        return `${output}${string}${JSON.stringify(value)}`;
+        const encodedValue = encodeObject(value);
+        return `${output}${string}${encodedValue}`;
       }
       return `${output}${string}${value}`;
     }
@@ -199,13 +199,17 @@ const Components = {
             <strong>${attributes["service-priority"].label}</strong>
             ${
               attributes["service-priority"]
-                ? `&nbsp;<span style="">${attributes["service-priority"].description}</span>`
+                ? `<span style="">${attributes["service-priority"].description}</span>`
                 : ""
             }
           `)}
           ${Components.p(`
             Estimated completion date:
-            <strong>${attributes["estimated-completion-date"]}</strong>
+            <strong>${
+              attributes["estimated-completion-date"]
+                ? attributes["estimated-completion-date"]
+                : "N/A"
+            }</strong>
           `)}
           ${
             attributes["estimated-completion-date"] === undefined
@@ -271,6 +275,8 @@ if (this.mQuicktext === undefined) {
     renderTemplate,
     Components,
     encodeObject,
+    decodeObject,
+    encodeMailUrl,
   };
 }
 const templates = {}
@@ -530,9 +536,9 @@ return template`
 
   <p>
     <strong>New contact details:</strong><br />
-    <strong>Name:</strong>&nbsp;<br />
-    <strong>Phone:</strong>&nbsp;<br />
-    <strong>Email:</strong>&nbsp;
+    Name:<br />
+    Phone:<br />
+    Email:
   </p>
 `;
 
@@ -592,6 +598,7 @@ const [deliveryInstructionsValue] = getInputs([
     ],
   },
 ]);
+
 const deliveryInstructions =
   deliveryInstructionsValue.label == "other"
     ? (deliveryInstructions = getInputs([{ label: "Delivery instructions" }]))
@@ -787,7 +794,7 @@ return template`
       <button-link href="${encodeMailUrl(
         `print@allbizsupplies.biz`,
         `Proof approved for order ${orderID}`,
-        `I have checked the proof for ${orderID} and confirm that it is ready for production.`
+        `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
       )}">
         Approve proof
       </button-link>
