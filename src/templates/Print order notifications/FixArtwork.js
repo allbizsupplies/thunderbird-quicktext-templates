@@ -18,7 +18,7 @@ const [orderID, projectName, artworkVersion] = getInputs([
 
 const artworkVersionNumber = artworkVersion.value >= 3
   ? getInputs([
-    { label: "Artwork version" }
+    { label: "Artwork version number" }
   ])
   : artworkVersion.value;
 
