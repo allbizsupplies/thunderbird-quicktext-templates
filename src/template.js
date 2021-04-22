@@ -1,6 +1,6 @@
 const colors = {
   success: "#00ce00",
-  warning: "#ffd100",
+  warning: "#ffee4e",
   lightBlueGrey: "#eeedff",
 };
 
