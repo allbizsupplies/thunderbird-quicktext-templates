@@ -3,13 +3,14 @@
  * subject: Proof approval required
  */
 
-const [orderID, projectName, servicePriority] = getInputs([
+const [orderID, projectName, servicePriority, artworkCharge] = getInputs([
   { label: "Order ID" },
   { label: "Project name" },
   {
     label: "Service priority",
     options: servicePriorityOptions,
   },
+  { label: "Accrued artwork charge (leave blank if not applicable)" },
 ]);
 
 return template`
@@ -23,8 +24,14 @@ return template`
     service-priority="${servicePriority}"
   />
 
+  ${artworkCharge ? `
+    <block style="background-color:${colors.warning}">
+      <p>Your artwork charge so far: $${artworkCharge}</p>
+    </block>
+  `: ""}
+
   <p>
-    Your proof is attached. Please check it carefully and sebd us your approval if everything is correct.
+    Your proof is attached. Please check it carefully and send us your approval if everything is correct.
   </p>
 
   <p>
