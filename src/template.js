@@ -131,59 +131,82 @@ const renderTemplate = () => {
   return processTemplate(wrappedOutput);
 };
 
+const getStyleAttribute = (attributes) =>
+  attributes !== undefined && attributes.style !== undefined
+    ? attributes.style
+    : "";
+
 const Components = {
-  wrapper: (content) => `
-    <div style="width:100%;max-width:750px;">
+  wrapper: (content, attributes) => `
+    <div style="width:100%;max-width:750px;${getStyleAttribute(attributes)}">
       ${content}
     </div>
   `,
 
-  p: (content) => `
-    <p style="margin:0;padding:${metrics.spacer} 0;">
+  p: (content, attributes) => `
+    <p style="margin:0;padding:${metrics.spacer} 0;${getStyleAttribute(
+    attributes
+  )}">
       ${content}
     </p>
   `,
 
-  ul: (content) => `
-    <ul style="margin:0;padding:${metrics.halfSpacer} 0 ${metrics.halfSpacer} 1em;">
+  ul: (content, attributes) => `
+    <ul style="margin:0;padding:${metrics.halfSpacer} 0 ${
+    metrics.halfSpacer
+  } 1em;${getStyleAttribute(attributes)}">
       ${content}
     </ul>
   `,
 
-  ol: (content) => `
-    <ol style="margin:0;padding:${metrics.halfSpacer} 0 ${metrics.halfSpacer} 1em;">
+  ol: (content, attributes) => `
+    <ol style="margin:0;padding:${metrics.halfSpacer} 0 ${
+    metrics.halfSpacer
+  } 1em;${getStyleAttribute(attributes)}">
       ${content}
     </ol>
   `,
 
-  li: (content) => `
-    <li style="margin:0;padding:0.1em 0;">
+  li: (content, attributes) => `
+    <li style="margin:0;padding:0.1em 0;${getStyleAttribute(attributes)}">
       ${content}
     </li>
   `,
 
-  heading: (content) => `
-    <p style="font-size:1.5em;text-align:center;margin:0;padding:${metrics.spacer} 0;">
+  heading: (content, attributes) => `
+    <p style="font-size:1.5em;text-align:center;margin:0;padding:${
+      metrics.spacer
+    } 0;${getStyleAttribute(attributes)}">
       <strong>${content}</strong>
     </p>
   `,
 
-  subheading: (content) => `
-    <p style="font-size:1.25em;text-align:center;margin:0;padding:${metrics.spacer} 0;">
+  subheading: (content, attributes) => `
+    <p style="font-size:1.25em;text-align:center;margin:0;padding:${
+      metrics.spacer
+    } 0;${getStyleAttribute(attributes)}">
       <strong>${content}</strong>
     </p>
   `,
 
-  block: (content) => `
+  block: (content, attributes) => `
     <div style="padding:${metrics.spacer} 0;">
-      <div style="padding:${metrics.spacer} 1em;background-color:${colors.lightBlueGrey}">
+      <div style="padding:${metrics.spacer} 1em;background-color:${
+    colors.lightBlueGrey
+  };${getStyleAttribute(attributes)}">
         ${content}
       </div>
     </div>
   `,
 
   "button-link": (content, attributes) => `
-    <a href="${attributes.href}" style="display:inline-block;text-align:center;padding:${metrics.spacer} 1em;border-radius:6em;background-color:black;color:white;text-decoration:none;">
+    <a href="${
+      attributes.href
+    }" style="display:inline-block;text-align:center;padding:${
+    metrics.spacer
+  } 1em;border-radius:6em;background-color:black;color:white;text-decoration:none;${getStyleAttribute(
+    attributes
+  )}">
       ${content}
     </a>
   `,

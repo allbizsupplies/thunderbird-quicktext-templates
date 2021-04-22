@@ -83,6 +83,13 @@ describe("processes template", () => {
     expectTemplateOutputToMatch(result, expectedResult);
   });
 
+  test("with p component with style attribute", () => {
+    const value = `<p style="color:red;">foo</p>`;
+    const result = processTemplate(value);
+    const expectedResult = Components.p(`foo`, { style: `color:red;` });
+    expectTemplateOutputToMatch(result, expectedResult);
+  });
+
   test("with p component inside div element", () => {
     const value = `<div><p>foo</p></div>`;
     const result = processTemplate(value);
