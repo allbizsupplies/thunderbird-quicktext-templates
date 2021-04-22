@@ -131,59 +131,82 @@ const renderTemplate = () => {
   return processTemplate(wrappedOutput);
 };
 
+const getStyleAttribute = (attributes) =>
+  attributes !== undefined && attributes.style !== undefined
+    ? attributes.style
+    : "";
+
 const Components = {
-  wrapper: (content) => `
-    <div style="width:100%;max-width:750px;">
+  wrapper: (content, attributes) => `
+    <div style="width:100%;max-width:750px;${getStyleAttribute(attributes)}">
       ${content}
     </div>
   `,
 
-  p: (content) => `
-    <p style="margin:0;padding:${metrics.spacer} 0;">
+  p: (content, attributes) => `
+    <p style="margin:0;padding:${metrics.spacer} 0;${getStyleAttribute(
+    attributes
+  )}">
       ${content}
     </p>
   `,
 
-  ul: (content) => `
-    <ul style="margin:0;padding:${metrics.halfSpacer} 0 ${metrics.halfSpacer} 1em;">
+  ul: (content, attributes) => `
+    <ul style="margin:0;padding:${metrics.halfSpacer} 0 ${
+    metrics.halfSpacer
+  } 1em;${getStyleAttribute(attributes)}">
       ${content}
     </ul>
   `,
 
-  ol: (content) => `
-    <ol style="margin:0;padding:${metrics.halfSpacer} 0 ${metrics.halfSpacer} 1em;">
+  ol: (content, attributes) => `
+    <ol style="margin:0;padding:${metrics.halfSpacer} 0 ${
+    metrics.halfSpacer
+  } 1em;${getStyleAttribute(attributes)}">
       ${content}
     </ol>
   `,
 
-  li: (content) => `
-    <li style="margin:0;padding:0.1em 0;">
+  li: (content, attributes) => `
+    <li style="margin:0;padding:0.1em 0;${getStyleAttribute(attributes)}">
       ${content}
     </li>
   `,
 
-  heading: (content) => `
-    <p style="font-size:1.5em;text-align:center;margin:0;padding:${metrics.spacer} 0;">
+  heading: (content, attributes) => `
+    <p style="font-size:1.5em;text-align:center;margin:0;padding:${
+      metrics.spacer
+    } 0;${getStyleAttribute(attributes)}">
       <strong>${content}</strong>
     </p>
   `,
 
-  subheading: (content) => `
-    <p style="font-size:1.25em;text-align:center;margin:0;padding:${metrics.spacer} 0;">
+  subheading: (content, attributes) => `
+    <p style="font-size:1.25em;text-align:center;margin:0;padding:${
+      metrics.spacer
+    } 0;${getStyleAttribute(attributes)}">
       <strong>${content}</strong>
     </p>
   `,
 
-  block: (content) => `
+  block: (content, attributes) => `
     <div style="padding:${metrics.spacer} 0;">
-      <div style="padding:${metrics.spacer} 1em;background-color:${colors.lightBlueGrey}">
+      <div style="padding:${metrics.spacer} 1em;background-color:${
+    colors.lightBlueGrey
+  };${getStyleAttribute(attributes)}">
         ${content}
       </div>
     </div>
   `,
 
   "button-link": (content, attributes) => `
-    <a href="${attributes.href}" style="display:inline-block;text-align:center;padding:${metrics.spacer} 1em;border-radius:6em;background-color:black;color:white;text-decoration:none;">
+    <a href="${
+      attributes.href
+    }" style="display:inline-block;text-align:center;padding:${
+    metrics.spacer
+  } 1em;border-radius:6em;background-color:black;color:white;text-decoration:none;${getStyleAttribute(
+    attributes
+  )}">
       ${content}
     </a>
   `,
@@ -737,6 +760,98 @@ return template`
   </block>
 
   <payment-options order-id="${orderID}" />
+`;
+
+};
+
+templates.print_order_notifications__FixArtwork = () => {
+/**
+ * name: Fix artwork
+ * subject: Your artwork needs to be fixed
+ */
+
+const [orderID, projectName, artworkVersion] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  {
+    label: "Artwork version",
+    options: [
+      { value: 1, label: "First version", },
+      { value: 2, label: "Second version", },
+      { value: 3, label: "Third version or greater", },
+    ],
+  },
+]);
+
+const artworkVersionNumber = artworkVersion.value >= 3
+  ? getInputs([
+    { label: "Artwork version" }
+  ])
+  : artworkVersion.value;
+
+const proofCharge = `16.50`;
+const setupHourlyCharge = `90.00`;
+
+const accruedProofCharges = artworkVersion.value >= 3
+  ? getInputs([
+    { label: "Accrued artwork charges for rejected proofs" }
+  ])
+  : 0;
+
+return template`
+  <heading>
+    Your artwork needs to be fixed
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+  />
+
+  ${artworkVersion.value === 1
+    ? `
+      <block style="background-color:${colors.warning}">
+        <p>Artwork version: ${artworkVersionNumber}</p>
+        <p>Warning: we will need to charge a fee of $${proofCharge} once you submit three versions.</p>
+      </block>`
+    : artworkVersion.value === 2
+    ? `
+      <block style="background-color:${colors.warning}">
+        <p>Artwork version: ${artworkVersionNumber}</p>
+        <p>Warning: we will need to charge a fee of $${proofCharge} if the new artwork is not correct.</p>
+      </block>`
+    : `
+      <block style="background-color:${colors.warning}">
+        <p>Artwork version: ${artworkVersionNumber}</p>
+        <p>Accrued artwork setup charge: $${accruedProofCharges}</p>
+        <p>Warning: this setup charge will increase if the new artwork is not correct.</p>
+      </block>
+    `
+  }
+  
+  <p>
+    Please fix the following problems with your artwork:
+  </p>
+
+  <ul>
+    <li>Please send your artwork as a PDF file (PDF/X-1a is best)</li>
+    <li>Embed all fonts in your PDF, or convert all type to paths/curves/outlines</li>
+    <li>Increase your image resolution to 300ppi</li>
+    <li>Increase your image resolution to 600ppi</li>
+    <li>Convert all colours to CMYK (do not use RGB or spot colours)</li>
+    <li>Convert all colours to RGB (do not use CMYK or spot colours)</li>
+    <li>Convert all colours to spot colours (do not use CMYK or RGB colours)</li>
+    <li>Flatten transparent layers</li>
+    <li>Add 3mm bleed</li>
+    <li>Add 3mm safe area between text and the edge of the artwork</li>
+    <li>Define a trim box for the final cut size of your artwork</li>
+  </ul>
+
+  <p>
+    If you're unsure how to make these changes, please contact us
+    so we can set up the artwork for you. We charge $${setupHourlyCharge}
+    per hour for artwork design and setup.
+  </p>
 `;
 
 };

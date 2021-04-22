@@ -20,6 +20,11 @@
 <body><![CDATA[[[SCRIPT=Template|print_order_notifications__DepositRequired]]]]></body>
 </text>
 <text shortcut="" type="1">
+<name><![CDATA[Fix artwork]]></name>
+<subject><![CDATA[Your artwork needs to be fixed]]></subject>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__FixArtwork]]]]></body>
+</text>
+<text shortcut="" type="1">
 <name><![CDATA[Hardcopy proof ready]]></name>
 <subject><![CDATA[Hardcopy proof is ready to view]]></subject>
 <body><![CDATA[[[SCRIPT=Template|print_order_notifications__HardcopyProofReady]]]]></body>
