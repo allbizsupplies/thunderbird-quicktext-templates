@@ -31,8 +31,8 @@ This is a Quicktext **tag**. A tag begins and ends with a paid of brackets (`[[`
 
 The `Template` script has a list of templates that it can generate, and they are all named according to their menu location. In this example, `print_order_notifications__ProofApprovalRequired` is the template for proof approval messages located in the "Print order notifications" template menu.The `Template` script has a list of templates with these machine-friendly names; when the script runs, it grabs the template with the given name and returns its output.
 
-How this project generates templates, and how to maintain them
---------------------------------------------------------------
+How this project generates templates
+------------------------------------
 
 This project contains a list of template file in `src/templates`. Each template is located in a folder named after the menu the template belongs to. Each template contains some code that looks like this:
 
@@ -66,13 +66,82 @@ return template`
 ```
 
 This template has three parts:
-1. Metadata: the name and subject we should use for this template in the Quicktext menu
-2. User Inputs: we prompt the user to give us two bits of information: an order ID and project name.
-3. Template markup: we use XML to express the content that should be returned by this template.
+1. Metadata: the name and subject we should use for this template in the Quicktext menu. This are written in a JavaScript block comment.
+2. User Inputs: we prompt the user to give us two bits of information: an order ID and project name. The values supplied by the user are stored so we can use them in the template markup.
+3. Template markup: we use XML to express the content that should be returned by this template. This markup can contain XHTML tags as well as specially defined tags that will be translated into valid HTML.
 
 When we run `build.py`, it collects these templates and makes a bunch of template import files, found in `dist/templates`. You import these to create the menu items that appear in the Quicktext menu. It also collects these templates and combines them with the code in `src/template.js` to make a complete JavaScript script that contains all of the logic needed to actually make the templates work.
 
 `src/template.js` contains a few things:
 1. Some info, including colours and service priority options.
-2. The code to show input boxes and multiple choice lists to the user.
+2. The code to show input boxes and multiple choice lists to the user. 
 3. The code to turn the template XML into HTML markup.
+
+How to add new templates
+------------------------
+
+### Creating a new template
+
+Create a new `.js` file in one of the folders in `src/templates`. The folder name is the menu name that the template will belong to. You can create a new folder if you want a new menu. Don't put any spaces in the name of the `.js` file.
+
+At the top of the file, add a JavaScript block comment:
+```js
+/**
+ * name: The name of the template that will appear in the Quicktext menu bar
+ * subject: The subject that will be set on the email when the template is selected
+ */
+ ```
+
+If you need to collect input from the user for the template, add a call to `getInputs`. `getInputs` takes one argument, which is a list of objects. Each object needs to have at least one attribute, `label`, which is used to identify the input. By default, the user will be asked to type into a text box, but if your object includes an `opions` attribute then the user will be prompted to choose from a multiple choice list.
+
+For example:
+```js
+const [name, quest, favouriteColour] = getInputs([
+  { label: "What is your name?" },
+  { label: "What is your quest?" },
+  { label: "What is your favourite colour?", options: [
+    { label: "Red", value: "red" },
+    { label: "Blue", value: "blue" },
+    { label: "I don't know", value: "unknown" },
+  ]},
+]);
+```
+Since we passed a list of three objects to `getInputs`, we get a list of three answers returned to us.
+| value              | type of input           | type of value returned to us    |
+| ---                | ---                     | ---                             |
+| `name`             | text input              | a string                        |
+| `quest`            | text input              | a string                        |
+| `favouriteColour`  | multiple choice select  | an object (the selected option) |
+
+Lastly, we need to return something to put in the email. For this we retuern a tagged template string.
+
+Here's an example of a return value:
+```js
+return template`
+  <block>
+    <p>
+      My name is: ${name}
+    </p>
+    <p>
+      I an on a quest ${quest}
+    </p>
+    <p>
+      My favourite colour is ${favouriteColour.name}
+    </p>
+  <block>
+`;
+```
+
+There's some magic that happens behind the scenes when this template is used:
+1. The placeholders `${name}`, `${quest}` and `${favouriteColour.value}` are replaced with their actual values.
+2. The `block` element is replaced with some HTML that appears as a light grey box.
+3. The `p` elements are updated with a style attribute to make sure they are spaced nicely.
+
+### Importing the new template into Quicktext
+
+In order to actually use your new template, you have to run the build script. This is a Python script, so you need to have Python installed on your computer in order to run it.
+
+Open a shell terminal in the project and run `python build.py`. 
+
+
+
