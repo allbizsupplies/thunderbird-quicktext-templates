@@ -120,15 +120,15 @@ Here's an example of a return value:
 return template`
   <block>
     <p>
-      My name is: ${name}
+      My name is ${name}.
     </p>
     <p>
-      I an on a quest ${quest}
+      I am on a quest ${quest}.
     </p>
     <p>
-      My favourite colour is ${favouriteColour.name}
+      My favourite colour is ${favouriteColour.name}.
     </p>
-  <block>
+  </block>
 `;
 ```
 
@@ -136,6 +136,24 @@ There's some magic that happens behind the scenes when this template is used:
 1. The placeholders `${name}`, `${quest}` and `${favouriteColour.value}` are replaced with their actual values.
 2. The `block` element is replaced with some HTML that appears as a light grey box.
 3. The `p` elements are updated with a style attribute to make sure they are spaced nicely.
+
+This is what comes out when Sir Lancelot of Camelot uses the template:
+
+```html
+<div style="padding:1em 0;">
+  <div style="padding:1em 1em;background-color:#eeedff;">
+    <p style="margin:0;padding:1em 0;">
+      My name is Sir Lancelot of Camelot
+    </p>
+    <p style="margin:0;padding:1em 0;">
+      I an on a quest to seek the Holy Grail. 
+    </p>
+    <p style="margin:0;padding:1em 0;">
+      My favourite colour is blue.
+    </p>
+  </div>
+</div>
+```
 
 ### Importing the new template into Quicktext
 
