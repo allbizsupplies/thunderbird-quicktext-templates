@@ -32,6 +32,7 @@ return template`
           Invoice number: ${invoiceNumber}<br />
         `
         : `
+          Invoice number: N/A (customer paying off account balance)<br />
           Account number: ${accountNumber}<br />
           Account name: ${accountName}<br />
         `
