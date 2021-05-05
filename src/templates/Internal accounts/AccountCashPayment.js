@@ -3,9 +3,18 @@
  * subject: Account payment taken in cash
  */
 
-const [accountNumber, accountName, paymentAmount, repName] = getInputs([
-  { label: "Account number" },
-  { label: "Account name" },
+const [invoiceNumber] = getInputs([
+  { label: "Invoice number (leave blank if not applicable)" },
+]);
+
+const [accountNumber, accountName] = invoiceNumber 
+  ? ["", ""]
+  : getInputs([
+    { label: "Account number" },
+    { label: "Account name" },
+  ]);
+
+const [paymentAmount, repName] = getInputs([
   { label: "Payment amount" },
   { label: "Taken by" },
 ]);
@@ -18,8 +27,15 @@ return template`
   <block>  
     <p>
       <strong>Payment details:</strong><br />
-      Account number: ${accountNumber}<br />
-      Account name: ${accountName}<br />
+      ${invoiceNumber
+        ? `
+          Invoice number: ${invoiceNumber}<br />
+        `
+        : `
+          Account number: ${accountNumber}<br />
+          Account name: ${accountName}<br />
+        `
+      }
       Payment amount: ${paymentAmount}<br />
       Taken by: ${repName}
     </p>
