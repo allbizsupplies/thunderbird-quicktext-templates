@@ -1,6 +1,6 @@
 /**
  * name: In production
- * subject: We are making your order
+ * subject: Your order is in the production queue
  */
 
 const [orderID, projectName, servicePriority, estimatedCompletionDate] = getInputs([
@@ -15,7 +15,7 @@ const [orderID, projectName, servicePriority, estimatedCompletionDate] = getInpu
 
 return template`
   <heading>
-    We have started making your order
+    We have put your order into the production queue
   </heading>
 
   <print-order-details
@@ -23,5 +23,6 @@ return template`
     project-name="${projectName}"
     service-priority="${servicePriority}"
     estimated-completion-date="${estimatedCompletionDate}"
+    offer-service-priority-upgrade=""
   />
 `;

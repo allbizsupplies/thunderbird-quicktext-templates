@@ -231,18 +231,32 @@ const Components = {
             <strong>${
               attributes["estimated-completion-date"]
                 ? attributes["estimated-completion-date"]
-                : "N/A"
+                : "N/A (not in production queue)"
             }</strong>
           `)}
           ${
             attributes["estimated-completion-date"] === undefined
               ? `
                 ${Components.p(`
-                  <span style="font-size:0.8em">We will give you an estimated completion date when your order is ready for production.</span>
+                  We will give you an estimated completion date when
+                  we put your order into the production queue.
                 `)}
               `
               : ""
           }
+          ${
+            attributes["offer-service-priority-upgrade"] !== undefined &&
+            attributes["service-priority"].name !== "same_day" &&
+            attributes["service-priority"].name !== "express"
+              ? `
+              ${Components.p(`
+                If you need your job to be turned around sooner than this,
+                please contact us ASAP to discuss options.
+              `)}
+            `
+              : ``
+          }
+          
         `)}
       `;
     } else {
@@ -264,7 +278,8 @@ const Components = {
       `)}
 
       ${Components.p(`
-        Call us on (08) 8326 2899, quote order ID ${attributes["order-id"]}, and we will take payment for your order.
+        Call us on (08) 8326 2899, quote order ID ${attributes["order-id"]},
+        and we will take payment for your order.
       `)}
     `)}
 

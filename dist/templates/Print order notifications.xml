@@ -31,7 +31,7 @@
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[In production]]></name>
-<subject><![CDATA[We are making your order]]></subject>
+<subject><![CDATA[Your order is in the production queue]]></subject>
 <body><![CDATA[[[SCRIPT=Template|print_order_notifications__InProduction]]]]></body>
 </text>
 <text shortcut="" type="1">

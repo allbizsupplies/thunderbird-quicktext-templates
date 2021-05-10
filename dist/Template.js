@@ -231,18 +231,32 @@ const Components = {
             <strong>${
               attributes["estimated-completion-date"]
                 ? attributes["estimated-completion-date"]
-                : "N/A"
+                : "N/A (not in production queue)"
             }</strong>
           `)}
           ${
             attributes["estimated-completion-date"] === undefined
               ? `
                 ${Components.p(`
-                  <span style="font-size:0.8em">We will give you an estimated completion date when your order is ready for production.</span>
+                  We will give you an estimated completion date when
+                  we put your order into the production queue.
                 `)}
               `
               : ""
           }
+          ${
+            attributes["offer-service-priority-upgrade"] !== undefined &&
+            attributes["service-priority"].name !== "same_day" &&
+            attributes["service-priority"].name !== "express"
+              ? `
+              ${Components.p(`
+                If you need your job to be turned around sooner than this,
+                please contact us ASAP to discuss options.
+              `)}
+            `
+              : ``
+          }
+          
         `)}
       `;
     } else {
@@ -264,7 +278,8 @@ const Components = {
       `)}
 
       ${Components.p(`
-        Call us on (08) 8326 2899, quote order ID ${attributes["order-id"]}, and we will take payment for your order.
+        Call us on (08) 8326 2899, quote order ID ${attributes["order-id"]},
+        and we will take payment for your order.
       `)}
     `)}
 
@@ -905,7 +920,8 @@ return template`
   </p>
 
   <p>
-    We won't start making your job until you approve your proof.
+    We can't put your order into the production queue until you approve
+    your proof.
   </p>
 
   <p>
@@ -945,7 +961,7 @@ return template`
 templates.print_order_notifications__InProduction = () => {
 /**
  * name: In production
- * subject: We are making your order
+ * subject: Your order is in the production queue
  */
 
 const [orderID, projectName, servicePriority, estimatedCompletionDate] = getInputs([
@@ -960,7 +976,7 @@ const [orderID, projectName, servicePriority, estimatedCompletionDate] = getInpu
 
 return template`
   <heading>
-    We have started making your order
+    We have put your order into the production queue
   </heading>
 
   <print-order-details
@@ -968,6 +984,7 @@ return template`
     project-name="${projectName}"
     service-priority="${servicePriority}"
     estimated-completion-date="${estimatedCompletionDate}"
+    offer-service-priority-upgrade=""
   />
 `;
 
@@ -1115,22 +1132,31 @@ return template`
     service-priority="${servicePriority}"
   />
 
-  ${artworkCharge ? `
-    <block style="background-color:${colors.warning}">
+  <block style="background-color:${colors.warning}">
+    ${artworkCharge ? `
       <p>Your artwork charge so far: $${artworkCharge}</p>
-    </block>
-  `: ""}
+    `: ``}
+    <p>
+      If you make changes that are not part of the directions that you've 
+      discussed with us, then you will incur additional charges to cover
+      these changes.
+    </p>
+  </block>
 
   <p>
-    Your proof is attached. Please check it carefully and send us your approval if everything is correct.
+    Your proof is attached. Please check it carefully and send us your
+    approval if everything is correct.
   </p>
 
   <p>
-    We won't start making your job until you approve your proof.
+    We can't put your order into the production queue until you approve
+    your proof.
   </p>
 
-  <p><strong>Check everything!</strong> You are responsible for ensuring that your job doesn't have any mistakes of
-  any kind.</p>
+  <p>
+    <strong>Check everything!</strong> You are responsible for ensuring 
+    that your job doesn't have any mistakes of any kind.
+  </p>
 
   <ul>
     <li>Check all spelling, numbers, and names.</li>

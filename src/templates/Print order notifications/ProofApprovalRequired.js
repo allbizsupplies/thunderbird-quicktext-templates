@@ -24,22 +24,31 @@ return template`
     service-priority="${servicePriority}"
   />
 
-  ${artworkCharge ? `
-    <block style="background-color:${colors.warning}">
+  <block style="background-color:${colors.warning}">
+    ${artworkCharge ? `
       <p>Your artwork charge so far: $${artworkCharge}</p>
-    </block>
-  `: ""}
+    `: ``}
+    <p>
+      If you make changes that are not part of the directions that you've 
+      discussed with us, then you will incur additional charges to cover
+      these changes.
+    </p>
+  </block>
 
   <p>
-    Your proof is attached. Please check it carefully and send us your approval if everything is correct.
+    Your proof is attached. Please check it carefully and send us your
+    approval if everything is correct.
   </p>
 
   <p>
-    We won't start making your job until you approve your proof.
+    We can't put your order into the production queue until you approve
+    your proof.
   </p>
 
-  <p><strong>Check everything!</strong> You are responsible for ensuring that your job doesn't have any mistakes of
-  any kind.</p>
+  <p>
+    <strong>Check everything!</strong> You are responsible for ensuring 
+    that your job doesn't have any mistakes of any kind.
+  </p>
 
   <ul>
     <li>Check all spelling, numbers, and names.</li>

@@ -29,7 +29,8 @@ return template`
   </p>
 
   <p>
-    We won't start making your job until you approve your proof.
+    We can't put your order into the production queue until you approve
+    your proof.
   </p>
 
   <p>
