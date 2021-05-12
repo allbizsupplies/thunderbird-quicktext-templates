@@ -6,13 +6,13 @@
 <texts>
 <text shortcut="" type="1">
 <name><![CDATA[Quote request]]></name>
-<subject><![CDATA[Price and availability]]></subject>
-<body><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[ETA request]]></name>
-<subject><![CDATA[ETA for purchase order]]></subject>
-<body><![CDATA[[[SCRIPT=Template|supplier_requests__QuoteRequest]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|supplier_requests__QuoteRequest|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|supplier_requests__QuoteRequest|body]]]]></body>
 </text>
 </texts>
 </menu>

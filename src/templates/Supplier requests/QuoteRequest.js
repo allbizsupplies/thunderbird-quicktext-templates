@@ -3,6 +3,13 @@
  * subject: ETA for purchase order
  */
 
+ return {
+  subject: () => ``,
+  body: () => {
+
+  },
+};
+
 const [purchaseOrderNumber] = getInputs([
   { label: "Purchase order number" },
 ])

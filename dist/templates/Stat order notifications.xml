@@ -6,28 +6,28 @@
 <texts>
 <text shortcut="" type="1">
 <name><![CDATA[Order ready to collect]]></name>
-<subject><![CDATA[Your order is ready to collect]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Part order dispatched]]></name>
-<subject><![CDATA[Part of your order has been dispatched]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Quotation]]></name>
-<subject><![CDATA[Quotation]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__QuotationAttached]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__QuotationAttached|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__QuotationAttached|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Update purchase order]]></name>
-<subject><![CDATA[Update purchase order]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__UpdatePurchaseOrder]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__UpdatePurchaseOrder|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__UpdatePurchaseOrder|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Web order payment required]]></name>
-<subject><![CDATA[Payment required for web order]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__WebOrderPaymentRequired]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__WebOrderPaymentRequired|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__WebOrderPaymentRequired|body]]]]></body>
 </text>
 </texts>
 </menu>

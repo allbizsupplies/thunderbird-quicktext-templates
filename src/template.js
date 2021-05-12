@@ -68,6 +68,12 @@ const getInputs = (fieldDefinitions) => {
   });
 };
 
+const parseOrderIDFromSubject = () => {
+  const subject = this.mQuicktext.get_subject();
+  const matches = subject.match(/\[Order #(.+)\]/);
+  return matches.length === 2 ? matches[1] : "";
+};
+
 const encodeObject = (value) =>
   this.mWindow
     ? "json:" + this.mWindow.btoa(JSON.stringify(value))
@@ -139,9 +145,12 @@ const processTemplate = function (templateOutput) {
 };
 
 const renderTemplate = () => {
-  const [templateName] = this.mVariables;
-  const templateOutput = templates[templateName]();
-  const wrappedOutput = Components.wrapper(templateOutput);
+  const [templateName, field] = this.mVariables;
+  const { subject, body } = templates[templateName]();
+  if (field === "subject") {
+    return subject();
+  }
+  const wrappedOutput = Components.wrapper(body());
   return processTemplate(wrappedOutput);
 };
 
@@ -226,6 +235,7 @@ const Components = {
   `,
 
   "print-order-details": (content, attributes) => {
+    const orderID = attributes["order-id"];
     if (attributes["service-priority"]) {
       const servicePriority = attributes["service-priority"];
       const servicePriorityUpgradeOptions = getServicePriorityUpgradeOptions(
@@ -234,7 +244,7 @@ const Components = {
 
       return `
         ${Components.block(`
-          ${Components.p(`Order ID: ${attributes["order-id"]}`)}
+          ${orderID ? Components.p(`Order ID: ${orderID}`) : ""}
           ${Components.p(`Project name: ${attributes["project-name"]}`)}
           ${Components.p(`
             Your order's turnaround time:
@@ -291,7 +301,7 @@ const Components = {
     } else {
       return `
         ${Components.block(`
-          ${Components.p(`Order ID: ${attributes["order-id"]}`)}
+          ${orderID ? Components.p(`Order ID: ${orderID}`) : ""}
           ${Components.p(`Project name: ${attributes["project-name"]}`)}
         `)}
       `;

@@ -6,23 +6,23 @@
 <texts>
 <text shortcut="" type="1">
 <name><![CDATA[About Allbiz Supplies]]></name>
-<subject><![CDATA[About Allbiz Supplies]]></subject>
-<body><![CDATA[[[SCRIPT=Template|account_notifications__AboutAllbiz]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|account_notifications__AboutAllbiz|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__AboutAllbiz|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Credit account application]]></name>
-<subject><![CDATA[Credit account application]]></subject>
-<body><![CDATA[[[SCRIPT=Template|account_notifications__AccountApplication]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|account_notifications__AccountApplication|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__AccountApplication|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Credit account opened]]></name>
-<subject><![CDATA[Credit account opened]]></subject>
-<body><![CDATA[[[SCRIPT=Template|account_notifications__CreditAccountOpened]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|account_notifications__CreditAccountOpened|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__CreditAccountOpened|body]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Invoice]]></name>
-<subject><![CDATA[Invoice]]></subject>
-<body><![CDATA[[[SCRIPT=Template|account_notifications__InvoiceArrached]]]]></body>
+<subject><![CDATA[[[SCRIPT=Template|account_notifications__InvoiceArrached|subject]]]]></subject>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__InvoiceArrached|body]]]]></body>
 </text>
 </texts>
 </menu>

@@ -60,11 +60,11 @@ def collect_templates():
         for filename in os.listdir(dirpath):
             filepath = os.path.join(dirpath, filename)
             script_name = snakecase(menu_title) + "__" + filename.split(".")[0]
-            text_name, text_subject, script_body = parse_template(filepath)
+            text_name, script_body = parse_template(filepath)
             texts.append({
                 "name": text_name,
-                "subject": text_subject,
-                "body": "[[SCRIPT=Template|{}]]".format(script_name),
+                "subject": "[[SCRIPT=Template|{}|subject]]".format(script_name),
+                "body": "[[SCRIPT=Template|{}|body]]".format(script_name),
             })
             scripts.append({
                 "name": script_name,
@@ -127,10 +127,9 @@ def parse_template(filepath):
         elif re.match("^[ ]*\*/[ ]*$", line) is not None:
             break
     text_name = frontmatter["name"]
-    text_subject = frontmatter["subject"]
     with open(filepath, "r") as file:
         script_body = file.read()
-    return text_name, text_subject, script_body
+    return text_name, script_body
 
 
 def remove_whitespace(script):

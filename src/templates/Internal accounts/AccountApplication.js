@@ -1,10 +1,12 @@
 /**
  * name: Account application
- * subject: Account application
  */
 
-return template`
-  <p>
-    Customer's account application is attached.
-  </p>
-`;
+return {
+  subject: () => `Account application`,
+  body: () => template`
+    <p>
+      Customer's account application is attached.
+    </p>
+  `,
+};
