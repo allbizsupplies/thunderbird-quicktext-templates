@@ -1,33 +1,26 @@
 /**
- * name: ETA request
- * subject: ETA for purchase order
+ * name: Quote request
  */
 
- return {
-  subject: () => ``,
+return {
+  subject: () => `Price and availability`,
   body: () => {
-
+    return template`
+    <heading>
+      Quote request
+    </heading>
+  
+    <p>
+      Please provide a price and availability for the following items:
+    </p>
+  
+    <ul>
+      <li></li>
+    </ul>
+  
+    <p>
+      Thank you.
+    </p>
+  `;
   },
 };
-
-const [purchaseOrderNumber] = getInputs([
-  { label: "Purchase order number" },
-])
-
-return template`
-  <heading>
-    ETA for purchase order
-  </heading>
-
-  <p>
-    Please provide an ETA for the following items from our purchase order ${purchaseOrderNumber}:
-  </p>
-
-  <ul>
-    <li></li>
-  </ul>
-
-  <p>
-    Thank you.
-  </p>
-`;
