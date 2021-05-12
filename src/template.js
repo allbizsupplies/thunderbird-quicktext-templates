@@ -29,7 +29,7 @@ const servicePriorityOptions = [
     name: "same_day",
     label: "Same Day",
     description:
-      "(give us print ready files before 9am and we will dispatch your order in the afternoon)",
+      "give us print ready files before 9am and we will dispatch your order in the afternoon",
   },
 ];
 

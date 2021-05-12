@@ -29,7 +29,7 @@ const servicePriorityOptions = [
     name: "same_day",
     label: "Same Day",
     description:
-      "(give us print ready files before 9am and we will dispatch your order in the afternoon)",
+      "give us print ready files before 9am and we will dispatch your order in the afternoon",
   },
 ];
 
@@ -1545,6 +1545,40 @@ return {
 
 templates.supplier_requests__ETARequest = () => {
 /**
+ * name: ETA request
+ */
+
+return {
+  subject: () => `ETA for purchase order`,
+  body: () => {
+    const [purchaseOrderNumber] = getInputs([
+      { label: "Purchase order number" },
+    ]);
+
+    return template`
+      <heading>
+        ETA for purchase order
+      </heading>
+    
+      <p>
+        Please provide an ETA for the following items from our purchase order ${purchaseOrderNumber}:
+      </p>
+    
+      <ul>
+        <li></li>
+      </ul>
+    
+      <p>
+        Thank you.
+      </p>
+    `;
+  },
+};
+
+};
+
+templates.supplier_requests__QuoteRequest = () => {
+/**
  * name: Quote request
  */
 
@@ -1570,43 +1604,6 @@ return {
   `;
   },
 };
-
-};
-
-templates.supplier_requests__QuoteRequest = () => {
-/**
- * name: ETA request
- * subject: ETA for purchase order
- */
-
- return {
-  subject: () => ``,
-  body: () => {
-
-  },
-};
-
-const [purchaseOrderNumber] = getInputs([
-  { label: "Purchase order number" },
-])
-
-return template`
-  <heading>
-    ETA for purchase order
-  </heading>
-
-  <p>
-    Please provide an ETA for the following items from our purchase order ${purchaseOrderNumber}:
-  </p>
-
-  <ul>
-    <li></li>
-  </ul>
-
-  <p>
-    Thank you.
-  </p>
-`;
 
 };
 
