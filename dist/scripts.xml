@@ -38,7 +38,21 @@ const servicePriorityOptions = [
   },
 ];
 
-const getTextInput = (label) => this.mQuicktext.get_input([label, "text"]);
+const getServicePriorityUpgradeOptions = (servicePriority) => {
+  const servicePriorityIndex = servicePriorityOptions.findIndex(
+    ({ name }) => name === servicePriority.name
+  );
+  return servicePriorityOptions.reduce(
+    (upgradeOptions, option, index) =>
+      index > servicePriorityIndex
+        ? [...upgradeOptions, option]
+        : upgradeOptions,
+    []
+  );
+};
+
+const getTextInput = (label) =>
+  this.mQuicktext.get_input([label, "text"]).replace(/&/g, "&amp;amp;");
 
 const getSelectInput = (label, options) => {
   const optionLabels = options.map(({ label }) => label);
@@ -218,16 +232,21 @@ const Components = {
 
   "print-order-details": (content, attributes) => {
     if (attributes["service-priority"]) {
+      const servicePriority = attributes["service-priority"];
+      const servicePriorityUpgradeOptions = getServicePriorityUpgradeOptions(
+        servicePriority
+      );
+
       return `
         ${Components.block(`
           ${Components.p(`Order ID: ${attributes["order-id"]}`)}
           ${Components.p(`Project name: ${attributes["project-name"]}`)}
           ${Components.p(`
             Your order's turnaround time:
-            <strong>${attributes["service-priority"].label}</strong>
+            <strong>${servicePriority.label}</strong>
             ${
-              attributes["service-priority"].description
-                ? `<span style="">${attributes["service-priority"].description}</span>`
+              servicePriority.description
+                ? `<span>(${servicePriority.description})</span>`
                 : ""
             }
           `)}
@@ -250,14 +269,24 @@ const Components = {
               : ""
           }
           ${
-            attributes["offer-service-priority-upgrade"] !== undefined &&
-            attributes["service-priority"].name !== "same_day" &&
-            attributes["service-priority"].name !== "express"
+            attributes["offer-service-priority-upgrade"] !== undefined
               ? `
-              ${Components.p(`
-                If you need your job to be turned around sooner than this,
-                please contact us ASAP to discuss options.
-              `)}
+                ${Components.p(`
+                  If you need your job to be turned around sooner than this,
+                  please contact us ASAP to discuss options.
+                `)}
+                ${Components.ul(`
+                  ${servicePriorityUpgradeOptions
+                    .map(
+                      (option) => `
+                    ${Components.li(`
+                      ${option.label}
+                      ${option.description ? `(${option.description})` : ``}
+                  `)}
+                `
+                    )
+                    .join("")}
+                `)}
             `
               : ``
           }
