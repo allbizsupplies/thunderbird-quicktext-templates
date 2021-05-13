@@ -39,5 +39,9 @@ return template`
     </p>
   </block>
 
+  <p>
+    Your invoice is attached.
+  </p>
+
   <payment-options order-id="${orderID}" />
 `;
