@@ -5,7 +5,7 @@ JavaScript-based templates for Thunderbird's Quicktext addon.
 ## How to setup these templates for automatic import
 
 1. Download this project
-2. Move the `dist` folder somewhere that everyone can access it.
+2. Move the `dist` folder somewhere that everyone can access it, such as `S:\AE   ALLBIZ INTERNAL\Allbiz Team\email templates`
 3. In Thunderbird, open Quicktext's settings (under Tools > Quicktext in the menu bar).
 4. In the Quicktext window, select the General tab if it isn't already open.
 5. In the 'Import on startup' input box, enter a list of paths to the script and template import files, separated by semicolons.
@@ -26,6 +26,55 @@ This spaghetti imports six files:
 - `templates/Supplier requests.xml`, the templates for sending generic requests to suppliers.
 
 Any given user probably doesn't need all of these templates on their email client, so you can remove the paths for the templates that the user doesn't need on their machine.
+
+## Templates list
+
+### Account notifications
+
+- **About Allbiz Supplies**: Some text introducing Allbiz to a new or prospective customer
+- **Credit account application**: A message to accompany an attached account application form, with instructions on how to return the form. (You still have to manually attach the PDF form.)
+- **Credit account opened**: Notifies a customer that their credit account had been opened, and includes instructions on how to use that account on Allbiz's online shop.
+- **Invoice**: A brief message to accompany an attached invoice.
+
+### Internal accounts
+
+- **Account Application**: A brief message to accompany an attached account application returned by a customer.
+- **Account cash payment**: Notifies accounts that the staff have taken a cash payment against a credit account.
+- **Phone message**: For sending phone messages to accounts.
+- **Update customer contact details**: A request to update contact details such as name, phone number, email or billing address on a customer's account.
+- **Update customer delivery address**: A request to update the delivery address on a customer's account.
+- **Update customer delivery instruction**: A request to update the default delivery instructions on a customer's account. Includes a list of presets for delivery and collection.
+
+### Print order notifications
+
+- **Awaiting information**: Requests more information (specs) from a customer in order to start making their order.
+- **Awaiting print ready files**: Requests a list of files from the customer.
+- **Deposit required**: Requests a deposit payment from a customer.
+- **Fix Artwork**: Asks the customer to make changes to their artwork. This template renders a list of common fixes, which you need to pare down before actually sending your email. This message also updates the customer on the costs they've accrued due to incorrect artwork, warns them that they will incur more costs if their new files also need to be fixed.
+- **Hardcopy proof ready**: Notifies the customer that there is a hardcopy proof for them to view.
+- **Proof approval required**: Accompanies an attached PDF proof, and insructs the customer to check their proof carefully. This message also includes button links which generate one of the following pre-filled reply message when clicked:
+  - **Approve proof**: Sends a simple message approving the proof for production, and includes the order number.
+  - **Request changes**: Sends a simple message requesting changes, and includes the order number. The customer just has to write in their required changes.
+
+All of the above messages also include an order summary, which shows the customer's service priority and reminds them that we will not actually settle an estimated completion date until the order is in production.
+
+- **In production**: Notifies the customer that their order has been put in the production queue and gives them an estimated completion date.
+- **Order dispatched**: Notifies the customer that their order has been dispatched.
+- **Order ready to collect**: Notifies the customer that their order is ready to collect.
+- **Part order dispatched**: Notifies the customer that part of their order has been dispatched, and renders a different message depending on whether this is the first or last part of the order to be delivered.
+
+### Stat order notifications
+
+- **Order ready to collect**: Notifies the customer that their order is ready to collect.
+- **Part order dispatched**: Notifies the customer that part of their order has been dispatched, and renders a different message depending on whether this is the first or last part of the order to be delivered.
+- **Quotation attached**: A simple message to accompany an attached quote.
+- **Update purchase order**: Asks the customer to update their purchase order to match the attached invoice or quote.
+- **Web order payment required**: Asks the customer to contact Allbiz to make payment on an online order, in the event that we were unable to process the payment they made during checkout.
+
+### Supplier requests
+
+- **ETA request**: Requests an ETA on items on a given purchase order.
+- **Quote request**: Requests a price and availability for one or more products.
 
 ## How to add new templates
 
