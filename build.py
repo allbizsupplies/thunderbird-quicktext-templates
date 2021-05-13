@@ -63,8 +63,7 @@ def collect_templates():
             text_name, script_body = parse_template(filepath)
             texts.append({
                 "name": text_name,
-                "subject": "[[SCRIPT=Template|{}|subject]]".format(script_name),
-                "body": "[[SCRIPT=Template|{}|body]]".format(script_name),
+                "body": "[[SCRIPT=Template|{}]]".format(script_name),
             })
             scripts.append({
                 "name": script_name,
@@ -103,8 +102,6 @@ def render_templates(menu):
             template_type=TemplateType.HTML)
         document += '<name><![CDATA[{name}]]></name>\n'.format(
             name=text["name"])
-        document += '<subject><![CDATA[{subject}]]></subject>\n'.format(
-            subject=text["subject"])
         document += '<body><![CDATA[{body}]]></body>\n'.format(
             body=text["body"])
         document += '</text>\n'

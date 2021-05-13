@@ -6,28 +6,23 @@
 <texts>
 <text shortcut="" type="1">
 <name><![CDATA[Order ready to collect]]></name>
-<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Part order dispatched]]></name>
-<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__PartOrderDispatched]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Quotation]]></name>
-<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__QuotationAttached|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__QuotationAttached|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__QuotationAttached]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Update purchase order]]></name>
-<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__UpdatePurchaseOrder|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__UpdatePurchaseOrder|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__UpdatePurchaseOrder]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Web order payment required]]></name>
-<subject><![CDATA[[[SCRIPT=Template|stat_order_notifications__WebOrderPaymentRequired|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__WebOrderPaymentRequired|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__WebOrderPaymentRequired]]]]></body>
 </text>
 </texts>
 </menu>

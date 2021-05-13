@@ -73,6 +73,10 @@ const getInputs = (fieldDefinitions) => {
   });
 };
 
+const setSubject = (value) => {
+  this.mWindow.document.getElementById("msgSubject").value = value;
+};
+
 const parseOrderIDFromSubject = () => {
   const subject = this.mQuicktext.get_subject();
   const matches = subject.match(/\[Order #(.+)\]/);
@@ -150,12 +154,9 @@ const processTemplate = function (templateOutput) {
 };
 
 const renderTemplate = () => {
-  const [templateName, field] = this.mVariables;
-  const { subject, body } = templates[templateName]();
-  if (field === "subject") {
-    return subject();
-  }
-  const wrappedOutput = Components.wrapper(body());
+  const [templateName] = this.mVariables;
+  const template = templates[templateName];
+  const wrappedOutput = Components.wrapper(template());
   return processTemplate(wrappedOutput);
 };
 
@@ -243,9 +244,8 @@ const Components = {
     const orderID = attributes["order-id"];
     if (attributes["service-priority"]) {
       const servicePriority = attributes["service-priority"];
-      const servicePriorityUpgradeOptions = getServicePriorityUpgradeOptions(
-        servicePriority
-      );
+      const servicePriorityUpgradeOptions =
+        getServicePriorityUpgradeOptions(servicePriority);
 
       return `
         ${Components.block(`
@@ -368,58 +368,57 @@ templates.account_notifications__AboutAllbiz = () => {
  * name: About Allbiz Supplies
  */
 
-return {
-  subject: () => `About Allbiz Supplies`,
-  body: () => template`
-    <heading>About Allbiz Supplies</heading>
+setSubject(`About Allbiz Supplies`);
 
+return template`
+  <heading>About Allbiz Supplies</heading>
+
+  <p>
+    Allbiz is a family-owned Adelaide business based in Lonsdale. We've been 
+    supplying businesses and organisations with office supplies, a wide range 
+    of education and craft supplies, and printing services for over 35 years.
+  </p>
+
+  <p>
+    As a member of Office Choice, we're able to offer competitive prices on a 
+    wide range of office supplies. We do daily deliveries o Adelaide and its 
+    surrounds, and we can also deliver orders Australia-wide.
+  </p>
+
+  <p>
+    Below is a link to our website and our contact information. Please don’t 
+    hesitate to ring or email if we can be of help with your Education, 
+    Cleaning or Art and Craft Supplies, General Stationery and Printing.
+  </p>
+
+  <block>
     <p>
-      Allbiz is a family-owned Adelaide business based in Lonsdale. We've been 
-      supplying businesses and organisations with office supplies, a wide range 
-      of education and craft supplies, and printing services for over 35 years.
+      General home page: 
+      <a href="https://allbizsupplies.biz/">allbizsupplies.biz</a>
+    </p>
+  </block>
+
+  <block>
+    <p>
+      Buy office supplies: 
+      <a href="https://allbiz.officechoice.com.au/">
+        allbiz.officechoice.com.au
+      </a>
     </p>
 
     <p>
-      As a member of Office Choice, we're able to offer competitive prices on a 
-      wide range of office supplies. We do daily deliveries o Adelaide and its 
-      surrounds, and we can also deliver orders Australia-wide.
+      Includes office supplies, cleaning, art and craft and 
+      educational materials.
     </p>
+  </block>
 
+  <block>
     <p>
-      Below is a link to our website and our contact information. Please don’t 
-      hesitate to ring or email if we can be of help with your Education, 
-      Cleaning or Art and Craft Supplies, General Stationery and Printing.
+      Order printing online: 
+      <a href="https://shop.allbizsupplies.biz/">shop.allbizsupplies.biz</a>
     </p>
-
-    <block>
-      <p>
-        General home page: 
-        <a href="https://allbizsupplies.biz/">allbizsupplies.biz</a>
-      </p>
-    </block>
-
-    <block>
-      <p>
-        Buy office supplies: 
-        <a href="https://allbiz.officechoice.com.au/">
-          allbiz.officechoice.com.au
-        </a>
-      </p>
-
-      <p>
-        Includes office supplies, cleaning, art and craft and 
-        educational materials.
-      </p>
-    </block>
-
-    <block>
-      <p>
-        Order printing online: 
-        <a href="https://shop.allbizsupplies.biz/">shop.allbizsupplies.biz</a>
-      </p>
-    </block>
-  `,
-};
+  </block>
+`;
 
 };
 
@@ -428,35 +427,34 @@ templates.account_notifications__AccountApplication = () => {
  * name: Credit account application
  */
 
-return {
-  subject: () => `Credit account application`,
-  body: () => template`
-    <heading>
-      Credit account application
-    </heading>
+setSubject(`Credit account application`);
 
+return template`
+  <heading>
+    Credit account application
+  </heading>
+
+  <p>
+    Please find an account application attached.
+  </p>
+
+  <p>
+    You can return the completed form by email or post.
+  </p>
+
+  <block>
     <p>
-      Please find an account application attached.
+      <strong>Email:</strong><br />
+      stat@allbizsupplies.biz
     </p>
 
     <p>
-      You can return the completed form by email or post.
+      <strong>Post:</strong><br />
+      125 O'Sullivan Beach Road<br />
+      Lonsdale SA 5160
     </p>
-
-    <block>
-      <p>
-        <strong>Email:</strong><br />
-        stat@allbizsupplies.biz
-      </p>
-
-      <p>
-        <strong>Post:</strong><br />
-        125 O'Sullivan Beach Road<br />
-        Lonsdale SA 5160
-      </p>
-    </block>
-  `,
-};
+  </block>
+`;
 
 };
 
@@ -465,45 +463,42 @@ templates.account_notifications__CreditAccountOpened = () => {
  * name: Credit account opened
  */
 
-return {
-  subject: () => `Credit account opened`,
-  body: () => {
-    const [accountNumber, accountName] = getInputs([
-      { label: "Account number" },
-      { label: "Account name" },
-    ]);
+const [accountNumber, accountName] = getInputs([
+  { label: "Account number" },
+  { label: "Account name" },
+]);
 
-    return template`
-      <heading>
-        Credit account opened
-      </heading>
-    
-      <p>
-        Your credit account is now open and ready to use.
-      </p>
-    
-      <block>
-        <p>
-          Account number: ${accountNumber}<br />
-          Account name: ${accountName}
-        </p>
-      </block>
-    
-      <subheading>
-        Use this account on our online store
-      </subheading>
-    
-      <p>
-        To use this account on our online store, 
-        <a href="https://allbiz.officechoice.com.au">
-          allbiz.officechoice.com.au
-        </a>,
-        just reply to this email and let us know the email address and contact 
-        name you would like to use for your login.
-      </p>
-    `;
-  },
-};
+setSubject(`Credit account opened`);
+
+return template`
+  <heading>
+    Credit account opened
+  </heading>
+
+  <p>
+    Your credit account is now open and ready to use.
+  </p>
+
+  <block>
+    <p>
+      Account number: ${accountNumber}<br />
+      Account name: ${accountName}
+    </p>
+  </block>
+
+  <subheading>
+    Use this account on our online store
+  </subheading>
+
+  <p>
+    To use this account on our online store, 
+    <a href="https://allbiz.officechoice.com.au">
+      allbiz.officechoice.com.au
+    </a>,
+    just reply to this email and let us know the email address and contact 
+    name you would like to use for your login.
+  </p>
+`;
 
 };
 
@@ -512,18 +507,17 @@ templates.account_notifications__InvoiceArrached = () => {
  * name: Invoice
  */
 
-return {
-  subject: () => `Invoice`,
-  body: () => template`
-    <heading>
-      Invoice
-    </heading>
+setSubject(`Invoice`);
 
-    <p>
-      Please find your invoice attached.
-    </p>
-  `,
-};
+return template`
+  <heading>
+    Invoice
+  </heading>
+
+  <p>
+    Please find your invoice attached.
+  </p>
+`;
 
 };
 
@@ -532,14 +526,13 @@ templates.internal_accounts__AccountApplication = () => {
  * name: Account application
  */
 
-return {
-  subject: () => `Account application`,
-  body: () => template`
-    <p>
-      Customer's account application is attached.
-    </p>
-  `,
-};
+setSubject(`Account application`);
+
+return template`
+  <p>
+    Customer's account application is attached.
+  </p>
+`;
 
 };
 
@@ -548,50 +541,47 @@ templates.internal_accounts__AccountCashPayment = () => {
  * name: Account cash payment
  */
 
-return {
-  subject: () => `Account payment taken in cash`,
-  body: () => {
-    const [invoiceNumber] = getInputs([
-      { label: "Invoice number (leave blank if not applicable)" },
-    ]);
+const [invoiceNumber] = getInputs([
+  { label: "Invoice number (leave blank if not applicable)" },
+]);
 
-    const [accountNumber, accountName] = invoiceNumber 
-      ? ["", ""]
-      : getInputs([
-        { label: "Account number" },
-        { label: "Account name" },
-      ]);
+const [accountNumber, accountName] = invoiceNumber 
+  ? ["", ""]
+  : getInputs([
+    { label: "Account number" },
+    { label: "Account name" },
+  ]);
 
-    const [paymentAmount, repName] = getInputs([
-      { label: "Payment amount" },
-      { label: "Taken by" },
-    ]);
+const [paymentAmount, repName] = getInputs([
+  { label: "Payment amount" },
+  { label: "Taken by" },
+]);
 
-    return template`
-      <p>
-        We have taken an account payment in cash.
-      </p>
+setSubject(`Account payment taken in cash`);
 
-      <block>  
-        <p>
-          <strong>Payment details:</strong><br />
-          ${invoiceNumber
-            ? `
-              Invoice number: ${invoiceNumber}<br />
-            `
-            : `
-              Invoice number: N/A (customer paying off account balance)<br />
-              Account number: ${accountNumber}<br />
-              Account name: ${accountName}<br />
-            `
-          }
-          Payment amount: ${paymentAmount}<br />
-          Taken by: ${repName}
-        </p>
-      </block>
-    `;
-  },
-};
+return template`
+  <p>
+    We have taken an account payment in cash.
+  </p>
+
+  <block>  
+    <p>
+      <strong>Payment details:</strong><br />
+      ${invoiceNumber
+        ? `
+          Invoice number: ${invoiceNumber}<br />
+        `
+        : `
+          Invoice number: N/A (customer paying off account balance)<br />
+          Account number: ${accountNumber}<br />
+          Account name: ${accountName}<br />
+        `
+      }
+      Payment amount: ${paymentAmount}<br />
+      Taken by: ${repName}
+    </p>
+  </block>
+`;
 
 };
 
@@ -600,40 +590,36 @@ templates.internal_accounts__PhoneMessage = () => {
  * name: Phone message
  */
 
-return {
-  subject: () => `Phone message`,
-  body: () => {
-    const [name, phoneNumber, repName] = getInputs([
-      { label: "From (name)" },
-      { label: "Phone number" },
-      { label: "Message taken by" },
-    ]);
+const [name, phoneNumber, repName] = getInputs([
+  { label: "From (name)" },
+  { label: "Phone number" },
+  { label: "Message taken by" },
+]);
 
-    return template`
-      <heading>
-        Phone message
-      </heading>
+setSubject(`Phone message`);
 
-      <block>
-        <p>
-          Name: ${name}<br />
-          Phone number: ${phoneNumber}
-        </p>
+return template`
+  <heading>
+    Phone message
+  </heading>
 
-        <p>
-          Taken by: ${repName}
-        </p>
-      </block>
+  <block>
+    <p>
+      Name: ${name}<br />
+      Phone number: ${phoneNumber}
+    </p>
 
-      <p>
-        <strong>Message:</strong><br />
-      </p>
+    <p>
+      Taken by: ${repName}
+    </p>
+  </block>
 
-      <p></p>
-    `;
-  },
-};
+  <p>
+    <strong>Message:</strong><br />
+  </p>
 
+  <p></p>
+`;
 
 };
 
@@ -642,35 +628,32 @@ templates.internal_accounts__UpdateCustomerContactDetails = () => {
  * name: Update customer contact details
  */
 
-return {
-  subject: () => `Update customer contact details`,
-  body: () => {
-    const [accountNumber, accountName] = getInputs([
-      { label: "Account number" },
-      { label: "Account name" },
-    ]);
+const [accountNumber, accountName] = getInputs([
+  { label: "Account number" },
+  { label: "Account name" },
+]);
 
-    return template`
-      <heading>
-        Update customer contact details
-      </heading>
-    
-      <block>
-        <p>
-          Account number: ${accountNumber}<br />
-          Account name: ${accountName}
-        </p>
-      </block>
-    
-      <p>
-        <strong>New contact details:</strong><br />
-        Name:<br />
-        Phone:<br />
-        Email:
-      </p>
-    `;
-  },
-};
+setSubject(`Update customer contact details`);
+
+return template`
+  <heading>
+    Update customer contact details
+  </heading>
+
+  <block>
+    <p>
+      Account number: ${accountNumber}<br />
+      Account name: ${accountName}
+    </p>
+  </block>
+
+  <p>
+    <strong>New contact details:</strong><br />
+    Name:<br />
+    Phone:<br />
+    Email:
+  </p>
+`;
 
 };
 
@@ -679,36 +662,31 @@ templates.internal_accounts__UpdateCustomerDeliveryAddress = () => {
  * name: Update customer delivery address
  */
 
-return {
-  subject: () => `Update customer delivery address`,
-  body: () => {
-    const [accountNumber, accountName] = getInputs([
-      { label: "Account number" },
-      { label: "Account name" },
-    ]);
-    
-    return template`
-      <heading>
-        Update customer delivery address
-      </heading>
-    
-      <block>
-        <p>
-          Account number: ${accountNumber}<br />
-          Account name: ${accountName}
-        </p>
-      </block>
-    
-      <p>
-        <strong>New delivery address:</strong>
-      </p>
-    
-      <p></p>
-    `;
-    
-  },
-};
+const [accountNumber, accountName] = getInputs([
+  { label: "Account number" },
+  { label: "Account name" },
+]);
 
+setSubject(`Update customer delivery address`);
+
+return template`
+  <heading>
+    Update customer delivery address
+  </heading>
+
+  <block>
+    <p>
+      Account number: ${accountNumber}<br />
+      Account name: ${accountName}
+    </p>
+  </block>
+
+  <p>
+    <strong>New delivery address:</strong>
+  </p>
+
+  <p></p>
+`;
 
 };
 
@@ -717,51 +695,48 @@ templates.internal_accounts__UpdateCustomerDeliveryInstructions = () => {
  * name: Update customer delivery instructions
  */
 
-return {
-  subject: () => `Update customer delivery instructions`,
-  body: () => {
-    const [accountNumber, accountName] = getInputs([
-      { label: "Account number" },
-      { label: "Account name" },
-    ]);
-    const [deliveryInstructionsValue] = getInputs([
-      {
-        label: "Delivery instructions",
-        options: [
-          { label: "Deliver (Allbiz Driver)" },
-          { label: "Deliver (Courier)" },
-          { label: "SMS when ready to collect" },
-          { label: "Call when ready to collect" },
-          { label: "other" },
-        ],
-      },
-    ]);
-    const deliveryInstructions =
-      deliveryInstructionsValue.label == "other"
-        ? (deliveryInstructions = getInputs([
-            { label: "Delivery instructions" },
-          ]))
-        : deliveryInstructionsValue.label;
+const [accountNumber, accountName] = getInputs([
+  { label: "Account number" },
+  { label: "Account name" },
+]);
 
-    return template`
-      <heading>
-        Update customer delivery instructions
-      </heading>
-    
-      <block>
-        <p>
-          Account number: ${accountNumber}<br />
-          Account name: ${accountName}
-        </p>
-      </block>
-    
-      <p>
-        <strong>New delivery instructions:</strong><br />
-        ${deliveryInstructions}
-      </p>
-    `;
+const [deliveryInstructionsValue] = getInputs([
+  {
+    label: "Delivery instructions",
+    options: [
+      { label: "Deliver (Allbiz Driver)" },
+      { label: "Deliver (Courier)" },
+      { label: "SMS when ready to collect" },
+      { label: "Call when ready to collect" },
+      { label: "other" },
+    ],
   },
-};
+]);
+
+const deliveryInstructions =
+  deliveryInstructionsValue.label === "other"
+    ? getInputs([{ label: "Delivery instructions (other)" }]).shift()
+    : deliveryInstructionsValue.label;
+
+setSubject(`Update customer delivery instructions`);
+
+return template`
+  <heading>
+    Update customer delivery instructions
+  </heading>
+
+  <block>
+    <p>
+      Account number: ${accountNumber}<br />
+      Account name: ${accountName}
+    </p>
+  </block>
+
+  <p>
+    <strong>New delivery instructions:</strong><br />
+    ${deliveryInstructions}
+  </p>
+`;
 
 };
 
@@ -770,42 +745,40 @@ templates.print_order_notifications__AwaitingInformation = () => {
  * name: Awaiting information
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} We need more info so we can start your order`;
+const [orderID, projectName, servicePriority] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  {
+    label: "Service priority",
+    options: servicePriorityOptions,
   },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [projectName, servicePriority] = getInputs([
-      { label: "Project name" },
-      {
-        label: "Service priority",
-        options: servicePriorityOptions,
-      },
-    ]);
+]);
 
-    return template`
-      <heading>
-        We need more info before we can make your order
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-        service-priority="${servicePriority}"
-      />
-    
-      <p>
-        Please give us the following information so we can start making your order:
-      </p>
-    
-      <ul>
-        <li></li>
-      </ul>
-    `;
-  },
-};
+setSubject(
+  `${
+    orderID ? `[Order #${orderID}]` : ""
+  } We need more info so we can start your order`
+);
+
+return template`
+  <heading>
+    We need more info before we can make your order
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+    service-priority="${servicePriority}"
+  />
+
+  <p>
+    Please give us the following information so we can start making your order:
+  </p>
+
+  <ul>
+    <li></li>
+  </ul>
+`;
 
 };
 
@@ -814,42 +787,40 @@ templates.print_order_notifications__AwaitingPrintReadyFiles = () => {
  * name: Awaiting print ready files
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Please send print-ready PDF files so we can start your order`;
+const [orderID, projectName, servicePriority] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  {
+    label: "Service priority",
+    options: servicePriorityOptions,
   },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [projectName, servicePriority] = getInputs([
-      { label: "Project name" },
-      {
-        label: "Service priority",
-        options: servicePriorityOptions,
-      },
-    ]);
+]);
 
-    return template`
-      <heading>
-        We need print ready PDF files before we can make your order
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-        service-priority="${servicePriority}"
-      />
-    
-      <p>
-        Please send us the following print ready PDF files so we can start making your order.
-      </p>
-    
-      <ul>
-        <li></li>
-      </ul>
-    `;
-  },
-};
+setSubject(
+  `${
+    orderID ? `[Order #${orderID}]` : ""
+  } Please send print-ready PDF files so we can start your order`
+);
+
+return template`
+  <heading>
+    We need print ready PDF files before we can make your order
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+    service-priority="${servicePriority}"
+  />
+
+  <p>
+    Please send us the following print ready PDF files so we can start making your order.
+  </p>
+
+  <ul>
+    <li></li>
+  </ul>
+`;
 
 };
 
@@ -858,51 +829,45 @@ templates.print_order_notifications__DepositRequired = () => {
  * name: Deposit required
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Deposit required for your order`;
-  },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [
-      projectName,
-      depositPaymentAmount,
-      servicePriority,
-    ] = getInputs([
-      { label: "Project name" },
-      { label: "Deposit amount" },
-      {
-        label: "Service priority",
-        options: servicePriorityOptions,
-      },
-    ]);
+const [orderID, projectName, depositPaymentAmount, servicePriority] = getInputs(
+  [
+    { label: "Order ID" },
+    { label: "Project name" },
+    { label: "Deposit amount" },
+    {
+      label: "Service priority",
+      options: servicePriorityOptions,
+    },
+  ]
+);
 
-    return template`
-      <heading>
-        We need a deposit payment for your order
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-        service-priority="${servicePriority}"
-      />
-    
-      <p>
-        Please pay us the following deposit amount so we can start your order.
-      </p>
-    
-      <block>
-        <p>
-          Deposit payment required: $${depositPaymentAmount}
-        </p>
-      </block>
-    
-      <payment-options order-id="${orderID}" />
-    `;
-  },
-};
+setSubject(
+  `${orderID ? `[Order #${orderID}]` : ""} Deposit required for your order`
+);
+
+return template`
+  <heading>
+    We need a deposit payment for your order
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+    service-priority="${servicePriority}"
+  />
+
+  <p>
+    Please pay us the following deposit amount so we can start your order.
+  </p>
+
+  <block>
+    <p>
+      Deposit payment required: $${depositPaymentAmount}
+    </p>
+  </block>
+
+  <payment-options order-id="${orderID}" />
+`;
 
 };
 
@@ -911,96 +876,92 @@ templates.print_order_notifications__FixArtwork = () => {
  * name: Fix artwork
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Your artwork needs to be fixed`;
+const [orderID, projectName, artworkVersion] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  {
+    label: "Artwork version",
+    options: [
+      { value: 1, label: "First version" },
+      { value: 2, label: "Second version" },
+      { value: 3, label: "Third version or greater" },
+    ],
   },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [projectName, artworkVersion] = getInputs([
-      { label: "Project name" },
-      {
-        label: "Artwork version",
-        options: [
-          { value: 1, label: "First version" },
-          { value: 2, label: "Second version" },
-          { value: 3, label: "Third version or greater" },
-        ],
-      },
-    ]);
+]);
 
-    const artworkVersionNumber =
-      artworkVersion.value >= 3
-        ? getInputs([{ label: "Artwork version number" }])
-        : artworkVersion.value;
+const artworkVersionNumber =
+  artworkVersion.value >= 3
+    ? getInputs([{ label: "Artwork version number" }])
+    : artworkVersion.value;
 
-    const proofCharge = `16.50`;
-    const setupHourlyCharge = `90.00`;
+const proofCharge = `16.50`;
+const setupHourlyCharge = `90.00`;
 
-    const accruedProofCharges =
-      artworkVersion.value >= 3
-        ? getInputs([{ label: "Accrued artwork charges for rejected proofs" }])
-        : 0;
+const accruedProofCharges =
+  artworkVersion.value >= 3
+    ? getInputs([{ label: "Accrued artwork charges for rejected proofs" }])
+    : 0;
 
-    return template`
-      <heading>
-        Your artwork needs to be fixed
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-      />
-    
-      ${
-        artworkVersion.value === 1
-          ? `
-          <block style="background-color:${colors.warning}">
-            <p>Artwork version: ${artworkVersionNumber}</p>
-            <p>Warning: we will need to charge a fee of $${proofCharge} once you submit three versions.</p>
-          </block>`
-          : artworkVersion.value === 2
-          ? `
-          <block style="background-color:${colors.warning}">
-            <p>Artwork version: ${artworkVersionNumber}</p>
-            <p>Warning: we will need to charge a fee of $${proofCharge} if the new artwork is not correct.</p>
-          </block>`
-          : `
-          <block style="background-color:${colors.warning}">
-            <p>Artwork version: ${artworkVersionNumber}</p>
-            <p>Accrued artwork setup charge: $${accruedProofCharges}</p>
-            <p>Warning: this setup charge will increase if the new artwork is not correct.</p>
-          </block>
-        `
-      }
-      
-      <p>
-        Please fix the following problems with your artwork:
-      </p>
-    
-      <ul>
-        <li>Please send your artwork as a PDF file (PDF/X-1a is best)</li>
-        <li>Embed all fonts in your PDF, or convert all type to paths/curves/outlines</li>
-        <li>Increase your image resolution to 300ppi</li>
-        <li>Increase your image resolution to 600ppi</li>
-        <li>Convert all colours to CMYK (do not use RGB or spot colours)</li>
-        <li>Convert all colours to RGB (do not use CMYK or spot colours)</li>
-        <li>Convert all colours to spot colours (do not use CMYK or RGB colours)</li>
-        <li>Flatten transparent layers</li>
-        <li>Add 3mm bleed</li>
-        <li>Add 3mm safe area between text and the edge of the artwork</li>
-        <li>Define a trim box for the final cut size of your artwork</li>
-      </ul>
-    
-      <p>
-        If you're unsure how to make these changes, please contact us
-        so we can set up the artwork for you. We charge $${setupHourlyCharge}
-        per hour for artwork design and setup.
-      </p>
-    `;
-  },
-};
+setSubject(
+  `${orderID ? `[Order #${orderID}]` : ""} Your artwork needs to be fixed`
+);
+
+return template`
+  <heading>
+    Your artwork needs to be fixed
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+  />
+
+  ${
+    artworkVersion.value === 1
+      ? `
+      <block style="background-color:${colors.warning}">
+        <p>Artwork version: ${artworkVersionNumber}</p>
+        <p>Warning: we will need to charge a fee of $${proofCharge} once you submit three versions.</p>
+      </block>`
+      : artworkVersion.value === 2
+      ? `
+      <block style="background-color:${colors.warning}">
+        <p>Artwork version: ${artworkVersionNumber}</p>
+        <p>Warning: we will need to charge a fee of $${proofCharge} if the new artwork is not correct.</p>
+      </block>`
+      : `
+      <block style="background-color:${colors.warning}">
+        <p>Artwork version: ${artworkVersionNumber}</p>
+        <p>Accrued artwork setup charge: $${accruedProofCharges}</p>
+        <p>Warning: this setup charge will increase if the new artwork is not correct.</p>
+      </block>
+    `
+  }
+  
+  <p>
+    Please fix the following problems with your artwork:
+  </p>
+
+  <ul>
+    <li>Please send your artwork as a PDF file (PDF/X-1a is best)</li>
+    <li>Embed all fonts in your PDF, or convert all type to paths/curves/outlines</li>
+    <li>Increase your image resolution to 300ppi</li>
+    <li>Increase your image resolution to 600ppi</li>
+    <li>Convert all colours to CMYK (do not use RGB or spot colours)</li>
+    <li>Convert all colours to RGB (do not use CMYK or spot colours)</li>
+    <li>Convert all colours to spot colours (do not use CMYK or RGB colours)</li>
+    <li>Flatten transparent layers</li>
+    <li>Add 3mm bleed</li>
+    <li>Add 3mm safe area between text and the edge of the artwork</li>
+    <li>Define a trim box for the final cut size of your artwork</li>
+  </ul>
+
+  <p>
+    If you're unsure how to make these changes, please contact us
+    so we can set up the artwork for you. We charge $${setupHourlyCharge}
+    per hour for artwork design and setup.
+  </p>
+`;
 
 };
 
@@ -1009,75 +970,71 @@ templates.print_order_notifications__HardcopyProofReady = () => {
  * name: Hardcopy proof ready
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Hardcopy proof is ready to view`;
+const [orderID, projectName, servicePriority] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  {
+    label: "Service priority",
+    options: servicePriorityOptions,
   },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [projectName, servicePriority] = getInputs([
-      { label: "Project name" },
-      {
-        label: "Service priority",
-        options: servicePriorityOptions,
-      },
-    ]);
+]);
 
-    return template`
-      <heading>
-        Hardcopy proof ready to view
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-        service-priority="${servicePriority}"
-      />
-    
-      <p>
-        Your hardcopy proof is ready to view in-store. Please contact us if
-        you need us to deliver it to you.
-      </p>
-    
-      <p>
-        We can't put your order into the production queue until you approve
-        your proof.
-      </p>
-    
-      <p>
-        <strong>Check everything!</strong> You are responsible for ensuring
-        that your job doesn't have any mistakes of any kind.
-      </p>
-    
-      <ul>
-        <li>Check all spelling, numbers, and names.</li>
-        <li>Make sure nothing is missing.</li>
-        <li>Make sure everything is in the right place.</li>
-        <li>Go back and check it again.</li>
-      </ul>
-    
-      <div style="text-align:center">
-        <p>
-          <button-link href="${encodeMailUrl(
-            `print@allbizsupplies.biz`,
-            `Proof approved for order ${orderID}`,
-            `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
-          )}">
-            Approve proof
-          </button-link>
-          <button-link href="${encodeMailUrl(
-            `print@allbizsupplies.biz`,
-            `Artwork changes required for order ${orderID}`,
-            `Please make the following changes to the artwork for order ${orderID}:\n\n\n`
-          )}">
-            Request changes
-          </button-link>
-        </p>
-      </div>
-    `;
-  },
-};
+setSubject(
+  `${orderID ? `[Order #${orderID}]` : ""} Hardcopy proof is ready to view`
+);
+
+return template`
+  <heading>
+    Hardcopy proof ready to view
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+    service-priority="${servicePriority}"
+  />
+
+  <p>
+    Your hardcopy proof is ready to view in-store. Please contact us if
+    you need us to deliver it to you.
+  </p>
+
+  <p>
+    We can't put your order into the production queue until you approve
+    your proof.
+  </p>
+
+  <p>
+    <strong>Check everything!</strong> You are responsible for ensuring
+    that your job doesn't have any mistakes of any kind.
+  </p>
+
+  <ul>
+    <li>Check all spelling, numbers, and names.</li>
+    <li>Make sure nothing is missing.</li>
+    <li>Make sure everything is in the right place.</li>
+    <li>Go back and check it again.</li>
+  </ul>
+
+  <div style="text-align:center">
+    <p>
+      <button-link href="${encodeMailUrl(
+        `print@allbizsupplies.biz`,
+        `Proof approved for order ${orderID}`,
+        `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
+      )}">
+        Approve proof
+      </button-link>
+      <button-link href="${encodeMailUrl(
+        `print@allbizsupplies.biz`,
+        `Artwork changes required for order ${orderID}`,
+        `Please make the following changes to the artwork for order ${orderID}:\n\n\n`
+      )}">
+        Request changes
+      </button-link>
+    </p>
+  </div>
+`;
 
 };
 
@@ -1086,41 +1043,36 @@ templates.print_order_notifications__InProduction = () => {
  * name: In production
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Your order is in the production queue`;
-  },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [
-      projectName,
-      servicePriority,
-      estimatedCompletionDate,
-    ] = getInputs([
-      { label: "Project name" },
-      {
-        label: "Service priority",
-        options: servicePriorityOptions,
-      },
-      { label: "Estimated completion date" },
-    ]);
+const [orderID, projectName, servicePriority, estimatedCompletionDate] =
+  getInputs([
+    { label: "Order ID" },
+    { label: "Project name" },
+    {
+      label: "Service priority",
+      options: servicePriorityOptions,
+    },
+    { label: "Estimated completion date" },
+  ]);
 
-    return template`
-      <heading>
-        We have put your order into the production queue
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-        service-priority="${servicePriority}"
-        estimated-completion-date="${estimatedCompletionDate}"
-        offer-service-priority-upgrade=""
-      />
-    `;
-  },
-};
+setSubject(
+  `${
+    orderID ? `[Order #${orderID}]` : ""
+  } Your order is in the production queue`
+);
+
+return template`
+  <heading>
+    We have put your order into the production queue
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+    service-priority="${servicePriority}"
+    estimated-completion-date="${estimatedCompletionDate}"
+    offer-service-priority-upgrade=""
+  />
+`;
 
 };
 
@@ -1129,33 +1081,29 @@ templates.print_order_notifications__OrderDispatched = () => {
  * name: Order dispatched
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} We have dispatched your order`;
-  },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [projectName] = getInputs([
-      { label: "Project name" },
-    ]);
+const [orderID, projectName] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+]);
 
-    return template`
-      <heading>
-        Order dispatched
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-      />
-    
-      <p>
-        Your order has been dispatched.
-      </p>
-    `;
-  },
-};
+setSubject(
+  `${orderID ? `[Order #${orderID}]` : ""} We have dispatched your order`
+);
+
+return template`
+  <heading>
+    Order dispatched
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+  />
+
+  <p>
+    Your order has been dispatched.
+  </p>
+`;
 
 };
 
@@ -1164,33 +1112,29 @@ templates.print_order_notifications__OrderReadyToCollect = () => {
  * name: Order ready to collect
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Your order is ready to collect`;
-  },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [projectName] = getInputs([
-      { label: "Project name" },
-    ]);
+const [orderID, projectName] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+]);
 
-    return template`
-      <heading>
-        Order ready to collect
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-      />
-      
-      <p>
-        Your order is ready to collect. Please contact us if you need us to deliver it to you.
-      </p>
-    `;
-  },
-};
+setSubject(
+  `${orderID ? `[Order #${orderID}]` : ""} Your order is ready to collect`
+);
+
+return template`
+  <heading>
+    Order ready to collect
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+  />
+  
+  <p>
+    Your order is ready to collect. Please contact us if you need us to deliver it to you.
+  </p>
+`;
 
 };
 
@@ -1198,65 +1142,62 @@ templates.print_order_notifications__PartOrderDispatched = () => {
 /**
  * name: Part order dispatched
  */
-
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Part of your order has been dispatched`;
+const [orderID, shipmentType] = getInputs([
+  { label: "Order ID" },
+  {
+    label: "Part order type",
+    options: [
+      { isRemainder: false, label: "This is the first part of the order" },
+      { isRemainder: true, label: "This is the final part of the order" },
+    ],
   },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [shipmentType] = getInputs([
-      {
-        label: "Part order type",
-        options: [
-          { isRemainder: false, label: "This is the first part of the order" },
-          { isRemainder: true, label: "This is the final part of the order" },
-        ],
-      },
-    ]);
+]);
 
-    const { isRemainder } = shipmentType;
+const { isRemainder } = shipmentType;
 
-    return isRemainder
-      ? template`
-        <heading>
-          We've dispatched the remainder of your order
-        </heading>
-    
-        <block>
-          <p>
-            Order number: ${orderID}
-          </p>
-        </block>
-    
-        <p>
-          We've dispatched the remaining items in your order.
-        </p>
-      `
-      : template`
-        <heading>
-          We've dispatched part of your order
-        </heading>
-    
-        <block>
-          <p>
-            Order number: ${orderID}
-          </p>
-        </block>
-    
-        <p>
-          We've dispatched part of your order to make sure you get
-          your items as soon as possible.
-        </p>
-    
-        <p>
-          We will dispatch the remainder of your order once the items
-          are ready to ship.
-        </p>
-      `;
-  },
-};
+setSubject(
+  `${
+    orderID ? `[Order #${orderID}]` : ""
+  } Part of your order has been dispatched`
+);
+
+return isRemainder
+  ? template`
+    <heading>
+      We've dispatched the remainder of your order
+    </heading>
+
+    <block>
+      <p>
+        Order number: ${orderID}
+      </p>
+    </block>
+
+    <p>
+      We've dispatched the remaining items in your order.
+    </p>
+  `
+  : template`
+    <heading>
+      We've dispatched part of your order
+    </heading>
+
+    <block>
+      <p>
+        Order number: ${orderID}
+      </p>
+    </block>
+
+    <p>
+      We've dispatched part of your order to make sure you get
+      your items as soon as possible.
+    </p>
+
+    <p>
+      We will dispatch the remainder of your order once the items
+      are ready to ship.
+    </p>
+  `;
 
 };
 
@@ -1265,98 +1206,92 @@ templates.print_order_notifications__ProofApprovalRequired = () => {
  * name: Proof approval required
  */
 
-return {
-  subject: () => {
-    const [orderID] = getInputs([{ label: "Order ID" }]);
-    return `${orderID ? `[Order #${orderID}]` : ""} Proof approval required`;
+const [orderID, projectName, servicePriority, artworkCharge] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  {
+    label: "Service priority",
+    options: servicePriorityOptions,
   },
-  body: () => {
-    const orderID = parseOrderIDFromSubject();
-    const [projectName, servicePriority, artworkCharge] = getInputs([
-      { label: "Project name" },
-      {
-        label: "Service priority",
-        options: servicePriorityOptions,
-      },
-      { label: "Accrued artwork charge (leave blank if not applicable)" },
-    ]);
+  { label: "Accrued artwork charge (leave blank if not applicable)" },
+]);
 
-    return template`
-      <heading>
-        Proof approval required
-      </heading>
-    
-      <print-order-details
-        order-id="${orderID}"
-        project-name="${projectName}"
-        service-priority="${servicePriority}"
-      />
-    
-      <block style="background-color:${colors.warning}">
-        ${
-          artworkCharge
-            ? `
-          <p>Your artwork charge so far: $${artworkCharge}</p>
-        `
-            : ``
-        }
-        <p>
-          If you make changes that are not part of the directions that you've 
-          discussed with us, then you will incur additional charges to cover
-          these changes.
-        </p>
-      </block>
-    
-      <p>
-        Your proof is attached. Please check it carefully and send us your
-        approval if everything is correct.
-      </p>
-    
-      <p>
-        We can't put your order into the production queue until you approve
-        your proof.
-      </p>
-    
-      <p>
-        <strong>Check everything!</strong> You are responsible for ensuring 
-        that your job doesn't have any mistakes of any kind.
-      </p>
-    
-      <ul>
-        <li>Check all spelling, numbers, and names.</li>
-        <li>Make sure nothing is missing.</li>
-        <li>Make sure everything is in the right place.</li>
-        <li>Go back and check it again.</li>
-      </ul>
-    
-      <p>
-        <strong>Warning about colour printing:</strong>
-        if your job will be printed in colour, and you need to check the exact colours that will be
-        printed, then you should contact us to arrange a <em>production proof</em>. (Your screen
-        and printer cannot accurately reproduce the colours of the final product.)
-      </p>
-    
-      <div style="text-align:center">
-        <p>
-          <button-link href="${encodeMailUrl(
-            `print@allbizsupplies.biz`,
-            `Proof approved for order ${orderID}`,
-            `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
-          )}">
-            Approve proof
-          </button-link>
-          <button-link href="${encodeMailUrl(
-            `print@allbizsupplies.biz`,
-            `Artwork changes required for order ${orderID}`,
-            `Please make the following changes to the artwork for order ${orderID}:\n\n\n`
-          )}">
-            Request changes
-          </button-link>
-        </p>
-      </div>
-    `;
-  },
-};
+setSubject(`${orderID ? `[Order #${orderID}]` : ""} Proof approval required`);
+
+return template`
+  <heading>
+    Proof approval required
+  </heading>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+    service-priority="${servicePriority}"
+  />
+
+  <block style="background-color:${colors.warning}">
+    ${
+      artworkCharge
+        ? `
+      <p>Your artwork charge so far: $${artworkCharge}</p>
+    `
+        : ``
+    }
+    <p>
+      If you make changes that are not part of the directions that you've 
+      discussed with us, then you will incur additional charges to cover
+      these changes.
+    </p>
+  </block>
+
+  <p>
+    Your proof is attached. Please check it carefully and send us your
+    approval if everything is correct.
+  </p>
+
+  <p>
+    We can't put your order into the production queue until you approve
+    your proof.
+  </p>
+
+  <p>
+    <strong>Check everything!</strong> You are responsible for ensuring 
+    that your job doesn't have any mistakes of any kind.
+  </p>
+
+  <ul>
+    <li>Check all spelling, numbers, and names.</li>
+    <li>Make sure nothing is missing.</li>
+    <li>Make sure everything is in the right place.</li>
+    <li>Go back and check it again.</li>
+  </ul>
+
+  <p>
+    <strong>Warning about colour printing:</strong>
+    if your job will be printed in colour, and you need to check the exact colours that will be
+    printed, then you should contact us to arrange a <em>production proof</em>. (Your screen
+    and printer cannot accurately reproduce the colours of the final product.)
+  </p>
+
+  <div style="text-align:center">
+    <p>
+      <button-link href="${encodeMailUrl(
+        `print@allbizsupplies.biz`,
+        `Proof approved for order ${orderID}`,
+        `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
+      )}">
+        Approve proof
+      </button-link>
+      <button-link href="${encodeMailUrl(
+        `print@allbizsupplies.biz`,
+        `Artwork changes required for order ${orderID}`,
+        `Please make the following changes to the artwork for order ${orderID}:\n\n\n`
+      )}">
+        Request changes
+      </button-link>
+    </p>
+  </div>
+`;
 
 };
 
@@ -1365,26 +1300,25 @@ templates.stat_order_notifications__OrderReadyToCollect = () => {
  * name: Order ready to collect
  */
 
- return {
-  subject: () => `Your order is ready to collect`,
-  body: () => template`
-    <heading>
-      Order ready to collect
-    </heading>
-  
-    <p>
-      Items ready for collection:
-    </p>
-  
-    <ul>
-      <li></li>
-    </ul>
-  
-    <p>
-      Please contact us if you need us to deliver this order to you.
-    </p>
-  `,
-};
+setSubject(`Your order is ready to collect`);
+
+return template`
+  <heading>
+    Order ready to collect
+  </heading>
+
+  <p>
+    Items ready for collection:
+  </p>
+
+  <ul>
+    <li></li>
+  </ul>
+
+  <p>
+    Please contact us if you need us to deliver this order to you.
+  </p>
+`;
 
 };
 
@@ -1393,61 +1327,58 @@ templates.stat_order_notifications__PartOrderDispatched = () => {
  * name: Part order dispatched
  */
 
-return {
-  subject: () => `Part of your order has been dispatched`,
-  body: () => {
-    const [orderID, shipmentType] = getInputs([
-      { label: "Order number" },
-      {
-        label: "Part order type",
-        options: [
-          { isRemainder: false, label: "This is the first part of the order" },
-          { isRemainder: true, label: "This is the final part of the order" },
-        ],
-      },
-    ]);
-
-    const { isRemainder } = shipmentType;
-
-    return isRemainder
-      ? template`
-        <heading>
-          We've dispatched the remainder of your order
-        </heading>
-    
-        <block>
-          <p>
-            Order number: ${orderID}
-          </p>
-        </block>
-    
-        <p>
-          We've dispatched the remaining items in your order.
-        </p>
-      `
-      : template`
-        <heading>
-          We've dispatched part of your order
-        </heading>
-    
-        <block>
-          <p>
-            Order number: ${orderID}
-          </p>
-        </block>
-    
-        <p>
-          We've dispatched part of your order to make sure you get
-          your items as soon as possible.
-        </p>
-    
-        <p>
-          We will dispatch the remainder of your order once the items
-          are ready to ship.
-        </p>
-      `;
+const [orderID, shipmentType] = getInputs([
+  { label: "Order number" },
+  {
+    label: "Part order type",
+    options: [
+      { isRemainder: false, label: "This is the first part of the order" },
+      { isRemainder: true, label: "This is the final part of the order" },
+    ],
   },
-};
+]);
+
+const { isRemainder } = shipmentType;
+
+setSubject(`Part of your order has been dispatched`);
+
+return isRemainder
+  ? template`
+    <heading>
+      We've dispatched the remainder of your order
+    </heading>
+
+    <block>
+      <p>
+        Order number: ${orderID}
+      </p>
+    </block>
+
+    <p>
+      We've dispatched the remaining items in your order.
+    </p>
+  `
+  : template`
+    <heading>
+      We've dispatched part of your order
+    </heading>
+
+    <block>
+      <p>
+        Order number: ${orderID}
+      </p>
+    </block>
+
+    <p>
+      We've dispatched part of your order to make sure you get
+      your items as soon as possible.
+    </p>
+
+    <p>
+      We will dispatch the remainder of your order once the items
+      are ready to ship.
+    </p>
+  `;
 
 };
 
@@ -1456,18 +1387,17 @@ templates.stat_order_notifications__QuotationAttached = () => {
  * name: Quotation
  */
 
-return {
-  subject: () => `Quotation`,
-  body: () => template`
-    <heading>
-      Quotation
-    </heading>
-  
-    <p>
-      Please find your quotation attached.
-    </p>
-  `,
-};
+setSubject(`Quotation`);
+
+return template`
+  <heading>
+    Quotation
+  </heading>
+
+  <p>
+    Please find your quotation attached.
+  </p>
+`;
 
 };
 
@@ -1476,34 +1406,31 @@ templates.stat_order_notifications__UpdatePurchaseOrder = () => {
  * name: Update purchase order
  */
 
-return {
-  subject: () => `Update purchase order`,
-  body: () => {
-    const [purchaseOrderNumber, attachmentType] = getInputs([
-      { label: "Purchase order number" },
-      {
-        label: "Attachment Type",
-        options: [{ label: "Invoice" }, { label: "Quote" }],
-      },
-    ]);
-
-    return template`
-      <heading>
-        Purchase order amendment required
-      </heading>
-    
-      <block>
-        <p>
-          Your purchase order: ${purchaseOrderNumber}
-        </p>
-      </block>
-    
-      <p>
-        Please update your purchase order to match the attached ${attachmentType.label}.
-      </p>
-    `;
+const [purchaseOrderNumber, attachmentType] = getInputs([
+  { label: "Purchase order number" },
+  {
+    label: "Attachment Type",
+    options: [{ label: "Invoice" }, { label: "Quote" }],
   },
-};
+]);
+
+setSubject(`Update purchase order ${purchaseOrderNumber}`);
+
+return template`
+  <heading>
+    Purchase order amendment required
+  </heading>
+
+  <block>
+    <p>
+      Your purchase order: ${purchaseOrderNumber}
+    </p>
+  </block>
+
+  <p>
+    Please update your purchase order to match the attached ${attachmentType.label}.
+  </p>
+`;
 
 };
 
@@ -1512,39 +1439,36 @@ templates.stat_order_notifications__WebOrderPaymentRequired = () => {
  * name: Web order payment required
  */
 
-return {
-  subject: () => `Payment required for web order`,
-  body: () => {
-    const [orderID, paymentAmount] = getInputs([
-      { label: "Web order number" },
-      { label: "Payment amount required" },
-    ]);
+const [orderID, paymentAmount] = getInputs([
+  { label: "Web order number" },
+  { label: "Payment amount required" },
+]);
 
-    return template`
-      <heading>
-        Web order payment required
-      </heading>
-    
-      <echoice-payment-details
-        order-number="${orderID}"
-        payment-amount="${paymentAmount}"
-      />
-    
-      <p>
-        Your web order is ready for dispatch, however for security reasons
-        we need to cancel the credit card payment that you made online, 
-        and have not charged your credit card.
-      </p>
-    
-      <block>
-        <p>Order number: ${orderID}</p>
-        <p>Payment required: ${paymentAmount}</p>
-      </block>
-    
-      <payment-options order-id="${orderID}" />
-    `;
-  },
-};
+setSubject(`Payment required for web order`);
+
+return template`
+  <heading>
+    Web order payment required
+  </heading>
+
+  <echoice-payment-details
+    order-number="${orderID}"
+    payment-amount="${paymentAmount}"
+  />
+
+  <p>
+    Your web order is ready for dispatch, however for security reasons
+    we need to cancel the credit card payment that you made online, 
+    and have not charged your credit card.
+  </p>
+
+  <block>
+    <p>Order number: ${orderID}</p>
+    <p>Payment required: ${paymentAmount}</p>
+  </block>
+
+  <payment-options order-id="${orderID}" />
+`;
 
 };
 
@@ -1553,32 +1477,27 @@ templates.supplier_requests__ETARequest = () => {
  * name: ETA request
  */
 
-return {
-  subject: () => `ETA for purchase order`,
-  body: () => {
-    const [purchaseOrderNumber] = getInputs([
-      { label: "Purchase order number" },
-    ]);
+const [purchaseOrderNumber] = getInputs([{ label: "Purchase order number" }]);
 
-    return template`
-      <heading>
-        ETA for purchase order
-      </heading>
-    
-      <p>
-        Please provide an ETA for the following items from our purchase order ${purchaseOrderNumber}:
-      </p>
-    
-      <ul>
-        <li></li>
-      </ul>
-    
-      <p>
-        Thank you.
-      </p>
-    `;
-  },
-};
+setSubject(`ETA for purchase order`);
+
+return template`
+  <heading>
+    ETA for purchase order
+  </heading>
+
+  <p>
+    Please provide an ETA for the following items from our purchase order ${purchaseOrderNumber}:
+  </p>
+
+  <ul>
+    <li></li>
+  </ul>
+
+  <p>
+    Thank you.
+  </p>
+`;
 
 };
 
@@ -1587,28 +1506,25 @@ templates.supplier_requests__QuoteRequest = () => {
  * name: Quote request
  */
 
-return {
-  subject: () => `Price and availability`,
-  body: () => {
-    return template`
-    <heading>
-      Quote request
-    </heading>
-  
-    <p>
-      Please provide a price and availability for the following items:
-    </p>
-  
-    <ul>
-      <li></li>
-    </ul>
-  
-    <p>
-      Thank you.
-    </p>
-  `;
-  },
-};
+setSubject(`Price and availability`);
+
+return template`
+<heading>
+  Quote request
+</heading>
+
+<p>
+  Please provide a price and availability for the following items:
+</p>
+
+<ul>
+  <li></li>
+</ul>
+
+<p>
+  Thank you.
+</p>
+`;
 
 };
 

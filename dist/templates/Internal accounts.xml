@@ -6,33 +6,27 @@
 <texts>
 <text shortcut="" type="1">
 <name><![CDATA[Account application]]></name>
-<subject><![CDATA[[[SCRIPT=Template|internal_accounts__AccountApplication|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|internal_accounts__AccountApplication|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__AccountApplication]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Account cash payment]]></name>
-<subject><![CDATA[[[SCRIPT=Template|internal_accounts__AccountCashPayment|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|internal_accounts__AccountCashPayment|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__AccountCashPayment]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Phone message]]></name>
-<subject><![CDATA[[[SCRIPT=Template|internal_accounts__PhoneMessage|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|internal_accounts__PhoneMessage|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__PhoneMessage]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Update customer contact details]]></name>
-<subject><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerContactDetails|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerContactDetails|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerContactDetails]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Update customer delivery address]]></name>
-<subject><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryAddress|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryAddress|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryAddress]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Update customer delivery instructions]]></name>
-<subject><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryInstructions|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryInstructions|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|internal_accounts__UpdateCustomerDeliveryInstructions]]]]></body>
 </text>
 </texts>
 </menu>

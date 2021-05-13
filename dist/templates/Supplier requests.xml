@@ -6,13 +6,11 @@
 <texts>
 <text shortcut="" type="1">
 <name><![CDATA[ETA request]]></name>
-<subject><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Quote request]]></name>
-<subject><![CDATA[[[SCRIPT=Template|supplier_requests__QuoteRequest|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|supplier_requests__QuoteRequest|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|supplier_requests__QuoteRequest]]]]></body>
 </text>
 </texts>
 </menu>

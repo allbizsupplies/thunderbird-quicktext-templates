@@ -2,37 +2,33 @@
  * name: Phone message
  */
 
-return {
-  subject: () => `Phone message`,
-  body: () => {
-    const [name, phoneNumber, repName] = getInputs([
-      { label: "From (name)" },
-      { label: "Phone number" },
-      { label: "Message taken by" },
-    ]);
+const [name, phoneNumber, repName] = getInputs([
+  { label: "From (name)" },
+  { label: "Phone number" },
+  { label: "Message taken by" },
+]);
 
-    return template`
-      <heading>
-        Phone message
-      </heading>
+setSubject(`Phone message`);
 
-      <block>
-        <p>
-          Name: ${name}<br />
-          Phone number: ${phoneNumber}
-        </p>
+return template`
+  <heading>
+    Phone message
+  </heading>
 
-        <p>
-          Taken by: ${repName}
-        </p>
-      </block>
+  <block>
+    <p>
+      Name: ${name}<br />
+      Phone number: ${phoneNumber}
+    </p>
 
-      <p>
-        <strong>Message:</strong><br />
-      </p>
+    <p>
+      Taken by: ${repName}
+    </p>
+  </block>
 
-      <p></p>
-    `;
-  },
-};
+  <p>
+    <strong>Message:</strong><br />
+  </p>
 
+  <p></p>
+`;

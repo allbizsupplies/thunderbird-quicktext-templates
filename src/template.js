@@ -68,6 +68,10 @@ const getInputs = (fieldDefinitions) => {
   });
 };
 
+const setSubject = (value) => {
+  this.mWindow.document.getElementById("msgSubject").value = value;
+};
+
 const parseOrderIDFromSubject = () => {
   const subject = this.mQuicktext.get_subject();
   const matches = subject.match(/\[Order #(.+)\]/);
@@ -145,12 +149,9 @@ const processTemplate = function (templateOutput) {
 };
 
 const renderTemplate = () => {
-  const [templateName, field] = this.mVariables;
-  const { subject, body } = templates[templateName]();
-  if (field === "subject") {
-    return subject();
-  }
-  const wrappedOutput = Components.wrapper(body());
+  const [templateName] = this.mVariables;
+  const template = templates[templateName];
+  const wrappedOutput = Components.wrapper(template());
   return processTemplate(wrappedOutput);
 };
 
@@ -238,9 +239,8 @@ const Components = {
     const orderID = attributes["order-id"];
     if (attributes["service-priority"]) {
       const servicePriority = attributes["service-priority"];
-      const servicePriorityUpgradeOptions = getServicePriorityUpgradeOptions(
-        servicePriority
-      );
+      const servicePriorityUpgradeOptions =
+        getServicePriorityUpgradeOptions(servicePriority);
 
       return `
         ${Components.block(`

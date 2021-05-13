@@ -6,53 +6,43 @@
 <texts>
 <text shortcut="" type="1">
 <name><![CDATA[Awaiting information]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingInformation|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingInformation|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingInformation]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Awaiting print ready files]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingPrintReadyFiles|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingPrintReadyFiles|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__AwaitingPrintReadyFiles]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Deposit required]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__DepositRequired|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__DepositRequired|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__DepositRequired]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Fix artwork]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__FixArtwork|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__FixArtwork|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__FixArtwork]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Hardcopy proof ready]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__HardcopyProofReady|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__HardcopyProofReady|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__HardcopyProofReady]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[In production]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__InProduction|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__InProduction|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__InProduction]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Order dispatched]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderDispatched|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderDispatched|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderDispatched]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Order ready to collect]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderReadyToCollect|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderReadyToCollect|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__OrderReadyToCollect]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Part order dispatched]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__PartOrderDispatched|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__PartOrderDispatched|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__PartOrderDispatched]]]]></body>
 </text>
 <text shortcut="" type="1">
 <name><![CDATA[Proof approval required]]></name>
-<subject><![CDATA[[[SCRIPT=Template|print_order_notifications__ProofApprovalRequired|subject]]]]></subject>
-<body><![CDATA[[[SCRIPT=Template|print_order_notifications__ProofApprovalRequired|body]]]]></body>
+<body><![CDATA[[[SCRIPT=Template|print_order_notifications__ProofApprovalRequired]]]]></body>
 </text>
 </texts>
 </menu>
