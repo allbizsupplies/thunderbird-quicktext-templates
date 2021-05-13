@@ -2,20 +2,30 @@
 
 JavaScript-based templates for Thunderbird's Quicktext addon.
 
-## How to import templates into Thunderbird
+## How to setup these templates for automatic import
 
-This imports two things:
+1. Download this project
+2. Move the `dist` folder somewhere that everyone can access it.
+3. In Thunderbird, open Quicktext's settings (under Tools > Quicktext in the menu bar).
+4. In the Quicktext window, select the General tab if it isn't already open.
+5. In the 'Import on startup' input box, enter a list of paths to the script and template import files, separated by semicolons.
 
-1. The menu items that appear in the Quicktext bar.
-2. The script that actually makes these templates work.
+Here's an example where the folder has been put on the local fileserver, and all templates are being imported:
 
-Steps:
+```
+S:\AE   ALLBIZ INTERNAL\Allbiz Team\email templates\scripts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\email templates\templates\Account notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\email templates\templates\Internal accounts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\email templates\templates\Print order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\email templates\templates\Stat order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\email templates\templates\Supplier requests.xml
+```
 
-1. Download this project.
-2. In Thunderbird, open Quicktext's settings (under Tools > Quicktext in the menu bar).
-3. In the Quicktext window, select File > Import > Scripts from the menu bar. Select `scripts.xml` from the `dist` folder in this project and click Open.
-4. In the Quicktext window again, select File > Import > Templates from the menu bar. Go to the `dist/templates` folder in this project and select the templates menu you want to import.
-5. Repeat step 4 until you've imported all of the menus you want.
+This spaghetti imports six files:
+
+- `scripts.xml`, which imports the `Template` script. This is the only file that is always required.
+- `templates/Account notifications.xml`, the templates for customer account notifications.
+- `templates/Internal accounts.xml`, the templates for internal communications with our accounts manager.
+- `templates/Print order notifications.xml`, the templates for sending notifications to print customers.
+- `templates/Stat order notifications.xml`, the templates for sending notifications to office supplies (stationery) customers.
+- `templates/Supplier requests.xml`, the templates for sending generic requests to suppliers.
+
+Any given user probably doesn't need all of these templates on their email client, so you can remove the paths for the templates that the user doesn't need on their machine.
 
 ## How to add new templates
 
