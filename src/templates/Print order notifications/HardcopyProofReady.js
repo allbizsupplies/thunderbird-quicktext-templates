@@ -51,14 +51,14 @@ return template`
   <div style="text-align:center">
     <p>
       <button-link href="${encodeMailUrl(
-        `print@allbizsupplies.biz`,
+        getFrom(),
         `Proof approved for order ${orderID}`,
         `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
       )}">
         Approve proof
       </button-link>
       <button-link href="${encodeMailUrl(
-        `print@allbizsupplies.biz`,
+        getFrom(),
         `Artwork changes required for order ${orderID}`,
         `Please make the following changes to the artwork for order ${orderID}:\n\n\n`
       )}">

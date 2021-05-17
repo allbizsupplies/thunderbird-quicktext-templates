@@ -72,6 +72,8 @@ const setSubject = (value) => {
   this.mWindow.document.getElementById("msgSubject").value = value;
 };
 
+const getFrom = () => this.mQuicktext.get_from(["email"]);
+
 const parseOrderIDFromSubject = () => {
   const subject = this.mQuicktext.get_subject();
   const matches = subject.match(/\[Order #(.+)\]/);

@@ -72,6 +72,8 @@ const setSubject = (value) => {
   this.mWindow.document.getElementById("msgSubject").value = value;
 };
 
+const getFrom = () => this.mQuicktext.get_from(["email"]);
+
 const parseOrderIDFromSubject = () => {
   const subject = this.mQuicktext.get_subject();
   const matches = subject.match(/\[Order #(.+)\]/);
@@ -1018,14 +1020,14 @@ return template`
   <div style="text-align:center">
     <p>
       <button-link href="${encodeMailUrl(
-        `print@allbizsupplies.biz`,
+        getFrom(),
         `Proof approved for order ${orderID}`,
         `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
       )}">
         Approve proof
       </button-link>
       <button-link href="${encodeMailUrl(
-        `print@allbizsupplies.biz`,
+        getFrom(),
         `Artwork changes required for order ${orderID}`,
         `Please make the following changes to the artwork for order ${orderID}:\n\n\n`
       )}">
@@ -1205,13 +1207,14 @@ templates.print_order_notifications__ProofApprovalRequired = () => {
  * name: Proof approval required
  */
 
-const [orderID, projectName, servicePriority, artworkCharge] = getInputs([
+const [orderID, projectName, servicePriority, version, artworkCharge] = getInputs([
   { label: "Order ID" },
   { label: "Project name" },
   {
     label: "Service priority",
     options: servicePriorityOptions,
   },
+  { label: "Proof version number" },
   { label: "Accrued artwork charge (leave blank if not applicable)" },
 ]);
 
@@ -1229,6 +1232,9 @@ return template`
   />
 
   <block style="background-color:${colors.warning}">
+    <p>
+      Proof version: ${version}
+    </p>
     ${
       artworkCharge
         ? `
@@ -1275,14 +1281,14 @@ return template`
   <div style="text-align:center">
     <p>
       <button-link href="${encodeMailUrl(
-        `print@allbizsupplies.biz`,
+        getFrom(),
         `Proof approved for order ${orderID}`,
         `I have checked the proof for order ${orderID} and confirm that it is ready for production.`
       )}">
         Approve proof
       </button-link>
       <button-link href="${encodeMailUrl(
-        `print@allbizsupplies.biz`,
+        getFrom(),
         `Artwork changes required for order ${orderID}`,
         `Please make the following changes to the artwork for order ${orderID}:\n\n\n`
       )}">
