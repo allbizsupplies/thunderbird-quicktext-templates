@@ -348,6 +348,44 @@ const Components = {
         Please email us a remittance advice so we can proceed with your order.
       `)}
     `)}
+
+    ${Components.block(`
+      ${Components.p(`
+        <strong>Pay on account</strong>
+      `)}
+
+      ${Components.p(`
+        If you have a credit account at Allbiz, please reply to this email and
+        give us your account number. (You can find your account number on your
+        invoices or statements.)
+      `)}
+
+      ${Components.p(`
+        If you would like to apply for an account:
+      `)}
+
+      ${Components.ol(`
+        ${Components.li(`
+          Fill out an 
+          <a href="http://cdn.allbizsupplies.biz/forms/eFORM_Account_30day.pdf">
+            Credit Account Application Form
+          </a>
+          and return by email to
+          <a href="mailto:accounts@allbizsupplies.biz">
+            accounts@allbizsupplies.biz
+          </a>.
+          It may take several days to process your account application.
+        `)}
+        ${Components.li(`
+          Email us at <a href="mailto:accounts@allbizsupplies.biz">
+            print@allbizsupplies.biz
+          </a>
+          and tell us that you have submitted an account application. We'll
+          proceed with your order once you account application has been
+          processed.
+        `)}
+      `)}
+    `)}
   `,
 };
 
