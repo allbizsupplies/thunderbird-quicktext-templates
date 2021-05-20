@@ -1,7 +1,7 @@
 const colors = {
   success: "#00ce00",
   warning: "#ffee4e",
-  lightBlueGrey: "#eeedff",
+  lightBlueGrey: "#f5f5ff",
 };
 
 const metrics = {
