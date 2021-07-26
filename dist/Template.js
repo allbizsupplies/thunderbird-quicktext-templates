@@ -917,17 +917,14 @@ templates.print_order_notifications__DepositRequired = () => {
  * name: Deposit required
  */
 
-const [orderID, projectName, depositPaymentAmount, servicePriority] = getInputs(
-  [
-    { label: "Order ID" },
-    { label: "Project name" },
-    { label: "Deposit amount" },
-    {
-      label: "Service priority",
-      options: servicePriorityOptions,
-    },
-  ]
-);
+const [orderID, projectName, servicePriority] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  {
+    label: "Service priority",
+    options: servicePriorityOptions,
+  },
+]);
 
 setSubject(
   `${orderID ? `[Order #${orderID}]` : ""} Deposit required for your order`
@@ -945,17 +942,11 @@ return template`
   />
 
   <p>
-    Please pay us the following deposit amount so we can start your order.
-  </p>
-
-  <block>
-    <p>
-      Deposit payment required: $${depositPaymentAmount}
-    </p>
-  </block>
-
-  <p>
     Your invoice is attached.
+  </p>
+  
+  <p>
+    Please pay a 50% deposit (or the full amount of the invoice) so we can start your order. 
   </p>
 
   <payment-options order-id="${orderID}" />
