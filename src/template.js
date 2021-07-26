@@ -7,6 +7,7 @@ const colors = {
 const metrics = {
   spacer: "0.5em",
   halfSpacer: "0.25em",
+  doubleSpacer: "1em",
 };
 
 const servicePriorityOptions = [
@@ -164,75 +165,127 @@ const getStyleAttribute = (attributes) =>
 
 const Components = {
   wrapper: (content, attributes) => `
-    <div style="width:100%;max-width:750px;${getStyleAttribute(attributes)}">
-      ${content}
+    <div style="
+      width: 750px;
+    ">
+      <table style="
+        border-collapse: collapse;
+        width: 100%;
+        ${getStyleAttribute(attributes)}
+      ">
+        ${content}
+      </table>
     </div>
   `,
 
-  p: (content, attributes) => `
-    <p style="margin:0;padding:${metrics.spacer} 0;${getStyleAttribute(
-    attributes
-  )}">
-      ${content}
-    </p>
+  row: (content, attributes) => `
+    <tr>
+      <td style="
+        padding: ${metrics.halfSpacer} 0;
+        ${getStyleAttribute(attributes)}
+      ">
+        ${content}
+      </td>
+    </tr>
   `,
 
-  ul: (content, attributes) => `
-    <ul style="margin:0;padding:${metrics.halfSpacer} 0 ${
-    metrics.halfSpacer
-  } 1em;${getStyleAttribute(attributes)}">
+  p: (content, attributes) => Components.row(content, attributes),
+
+  ul: (content, attributes) =>
+    Components.row(`
+    <ul style="
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 0;
+      ${getStyleAttribute(attributes)}
+    ">
       ${content}
     </ul>
-  `,
+  `),
 
-  ol: (content, attributes) => `
-    <ol style="margin:0;padding:${metrics.halfSpacer} 0 ${
-    metrics.halfSpacer
-  } 1em;${getStyleAttribute(attributes)}">
+  ol: (content, attributes) =>
+    Components.row(`
+    <ol style="
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 0;
+      ${getStyleAttribute(attributes)}
+    ">
       ${content}
     </ol>
-  `,
+  `),
 
   li: (content, attributes) => `
-    <li style="margin:0;padding:0.1em 0;${getStyleAttribute(attributes)}">
+    <li style="
+      padding: 0;
+      margin: 0;
+      ${getStyleAttribute(attributes)}
+    ">
       ${content}
     </li>
   `,
 
-  heading: (content, attributes) => `
-    <p style="font-size:1.5em;text-align:center;margin:0;padding:${
-      metrics.spacer
-    } 0;${getStyleAttribute(attributes)}">
-      <strong>${content}</strong>
-    </p>
-  `,
+  heading: (content, attributes) =>
+    Components.row(
+      `
+      <strong style="
+        font-size: 1.35em;
+      ">
+        ${content}
+      </strong>`,
+      attributes
+    ),
 
-  subheading: (content, attributes) => `
-    <p style="font-size:1.25em;text-align:center;margin:0;padding:${
-      metrics.spacer
-    } 0;${getStyleAttribute(attributes)}">
-      <strong>${content}</strong>
-    </p>
-  `,
+  subheading: (content, attributes) =>
+    Components.row(
+      `
+      <strong style="
+        font-size: 1.25em;
+      ">
+        ${content}
+      </strong>`,
+      attributes
+    ),
 
   block: (content, attributes) => `
-    <div style="padding:${metrics.spacer} 0;">
-      <div style="padding:${metrics.spacer} 1em;background-color:${
-    colors.lightBlueGrey
-  };${getStyleAttribute(attributes)}">
-        ${content}
-      </div>
-    </div>
+    <tr>
+      <td style="
+        padding: ${metrics.spacer} 0;
+      ">
+        <table style="
+          border-collapse: collapse;
+          width: 100%;
+        ">
+          <tr>
+            <td style="
+              padding:${metrics.spacer} ${metrics.doubleSpacer};
+              background-color: ${colors.lightBlueGrey};
+              ${getStyleAttribute(attributes)};
+            ">
+              <table style="
+                border-collapse: collapse;
+                width: 100%;
+              ">
+                ${content}
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
   `,
 
   "button-link": (content, attributes) => `
-    <a href="${
-      attributes.href
-    }" style="display:inline-block;text-align:center;padding:${
-    metrics.spacer
-  } 1em;border-radius:6em;background-color:black;color:white;text-decoration:none;${getStyleAttribute(
-    attributes
-  )}">
+    <a href="${attributes.href}" style="
+      display: inline-block;
+      text-align: center;
+      padding:${metrics.spacer} ${metrics.doubleSpacer};
+      border-radius: 6em;
+      background-color: black;
+      color: white;
+      text-decoration: none;
+      ${getStyleAttribute(attributes)}
+    ">
       ${content}
     </a>
   `,
@@ -361,7 +414,7 @@ const Components = {
 
       ${Components.ol(`
         ${Components.li(`
-          Fill out an 
+          Fill out a 
           <a href="http://cdn.allbizsupplies.biz/forms/eFORM_Account_30day.pdf">
             Credit Account Application Form
           </a>
