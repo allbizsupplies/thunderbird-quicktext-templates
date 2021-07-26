@@ -792,19 +792,24 @@ const [deliveryInstructionsValue] = getInputs([
   {
     label: "Delivery instructions",
     options: [
-      { label: "Deliver (Allbiz Driver)" },
-      { label: "Deliver (Courier)" },
+      { label: "Deliver by Allbiz Driver" },
+      { label: "Deliver by Courier" },
       { label: "SMS when ready to collect" },
+      { label: "Email when ready to collect", email: true },
       { label: "Call when ready to collect" },
-      { label: "other" },
+      { label: "other", other: true },
     ],
   },
 ]);
 
-const deliveryInstructions =
-  deliveryInstructionsValue.label === "other"
-    ? getInputs([{ label: "Delivery instructions (other)" }]).shift()
-    : deliveryInstructionsValue.label;
+const deliveryInstructions = deliveryInstructionsValue.other
+  ? getInputs([{ label: "Delivery instructions (other)" }]).shift()
+  : deliveryInstructionsValue.email
+  ? `
+    ${deliveryInstructionsValue.label}:<br />
+    ${getInputs([{ label: "Email address" }]).shift()}
+  `
+  : deliveryInstructionsValue.label;
 
 setSubject(`Update customer delivery instructions`);
 
