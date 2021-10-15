@@ -5,7 +5,7 @@ JavaScript-based templates for Thunderbird's Quicktext addon.
 ## How to setup these templates for automatic import
 
 1. Download this project
-2. Move the `dist` folder somewhere that everyone can access it, such as `S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist`
+2. Move the `dist` folder somewhere that everyone can access it, such as `S:\AE ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist`
 3. In Thunderbird, open Quicktext's settings (under Tools > Quicktext in the menu bar).
 4. In the Quicktext window, select the General tab if it isn't already open.
 5. In the 'Import on startup' input box, enter a list of paths to the script and template import files, separated by semicolons.
@@ -13,7 +13,7 @@ JavaScript-based templates for Thunderbird's Quicktext addon.
 Here's an example where the folder has been put on the local fileserver, and all templates are being imported:
 
 ```
-S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\scripts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Account notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Internal accounts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Print order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Stat order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Supplier requests.xml
+S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\scripts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Account notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Internal accounts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Internal requisitions.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Print order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Stat order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Supplier requests.xml
 ```
 
 This spaghetti imports six files:
@@ -21,6 +21,7 @@ This spaghetti imports six files:
 - `scripts.xml`, which imports the `Template` script. This is the only file that is always required.
 - `templates/Account notifications.xml`, the templates for customer account notifications.
 - `templates/Internal accounts.xml`, the templates for internal communications with our accounts manager.
+- `templates/Internal requisitions.xml`, the templates for internal requisitions from our purchasing manager.
 - `templates/Print order notifications.xml`, the templates for sending notifications to print customers.
 - `templates/Stat order notifications.xml`, the templates for sending notifications to office supplies (stationery) customers.
 - `templates/Supplier requests.xml`, the templates for sending generic requests to suppliers.
@@ -44,6 +45,10 @@ Any given user probably doesn't need all of these templates on their email clien
 - **Update customer contact details**: A request to update contact details such as name, phone number, email or billing address on a customer's account.
 - **Update customer delivery address**: A request to update the delivery address on a customer's account.
 - **Update customer delivery instruction**: A request to update the default delivery instructions on a customer's account. Includes a list of presets for delivery and collection.
+
+### Internal requisitions
+
+- **Print stock requisition**: A requisition order for stock for a print order.
 
 ### Print order notifications
 
