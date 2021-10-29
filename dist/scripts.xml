@@ -53,7 +53,10 @@ const getServicePriorityUpgradeOptions = (servicePriority) => {
 };
 
 const getTextInput = (label) =>
-  this.mQuicktext.get_input([label, "text"]).replace(/&/g, "&amp;amp;");
+  this.mQuicktext
+    .get_input([label, "text"])
+    .replace(/&/g, "&amp;amp;")
+    .replace(/"/g, "&quot;");
 
 const getSelectInput = (label, options) => {
   const optionLabels = options.map(({ label }) => label);
