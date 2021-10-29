@@ -48,7 +48,10 @@ const getServicePriorityUpgradeOptions = (servicePriority) => {
 };
 
 const getTextInput = (label) =>
-  this.mQuicktext.get_input([label, "text"]).replace(/&/g, "&amp;amp;");
+  this.mQuicktext
+    .get_input([label, "text"])
+    .replace(/&/g, "&amp;amp;")
+    .replace(/"/g, "&quot;");
 
 const getSelectInput = (label, options) => {
   const optionLabels = options.map(({ label }) => label);
@@ -546,6 +549,91 @@ return template`
 
 };
 
+templates.account_notifications__AccountCreated = () => {
+/**
+ * name: Account created
+ */
+
+const [accountNumber, accountName] = getInputs([
+  { label: "Account number" },
+  { label: "Account name" },
+]);
+
+setSubject(`Your account has been created`);
+
+return template`
+  <heading>Your account is ready to use</heading>
+
+  <block>
+    <p>
+      Account number: ${accountNumber}<br/>
+      Account name: ${accountName}<br/>
+    </p>
+  </block>
+ 
+  <subheading>
+    Ordering online using your account
+  </subheading>
+
+  <p>
+    <strong>To order printing online:</strong>
+  </p>
+
+  <ol>
+    <li>
+      Sign up for a login here:
+      <a href="https://shop.allbizsupplies.biz/user_registration.php">
+        https://shop.allbizsupplies.biz/user_registration.php
+      </a>.
+    </li>
+    <li>
+      Send an email to
+      <a href="mailto:print@allbizsupplies.biz">print@allbizsupplies.biz</a>
+      that says "Please link my account ${accountNumber} to my login: youremail@example.com".
+    </li>
+    <li>
+      We will notify you when your login has been linked to your new account.
+    </li>
+    <li>
+      Log in to your account here:
+      <a href="https://shop.allbizsupplies.biz/user_login.php">
+        https://shop.allbizsupplies.biz/user_login.php
+      </a>.
+    </li>
+    <li>
+      When you place an order, you will have the option to pay on account
+      instead of paying on credit card.
+    </li>
+  </ol>
+  
+  <p>
+    <strong>To order office supplies online:</strong>
+  </p>
+
+  <ol>
+    <li>
+      We automatically create a login for your when we set up your account.
+      You should have received an email with your login details.<br/>
+      If you didn't get your login details then email us at
+      <a href="mailto:stat@allbizsupplies.biz">stat@allbizsupplies.biz</a>
+      and we'll set it up for you.
+    </li>
+    <li>
+      Log in to your account here:
+      <a href="https://allbiz.officechoice.com.au/customer/account/login/">
+        https://allbiz.officechoice.com.au/customer/account/login/
+      </a>
+    </li>
+    <li>
+      When you place an order, you will have the option to pay on account
+      instead of paying on credit card.
+    </li>
+  </ol>
+
+ `;
+
+};
+
 templates.account_notifications__CreditAccountOpened = () => {
 /**
  * name: Credit account opened
@@ -829,6 +917,101 @@ return template`
     <strong>New delivery instructions:</strong><br />
     ${deliveryInstructions}
   </p>
+`;
+
+};
+
+templates.internal_requisitions__PrintStockRequisition = () => {
+/**
+ * name: Print stock requisition
+ */
+
+const [orderID, projectName, dueDate] = getInputs([
+  { label: "Order ID" },
+  { label: "Project name" },
+  { label: "Due date for stock" },
+]);
+
+let itemIndex = 0;
+const items = [];
+while (true) {
+  const itemCode = getInputs([{ label: `Item #${itemIndex + 1} code` }]);
+  if (itemCode == "" && itemIndex > 0) {
+    break;
+  }
+  const itemDesc = getInputs([{ label: `Item #${itemIndex + 1} description` }]);
+  const itemQuantity = getInputs([
+    { label: `Item #${itemIndex + 1} quantity` },
+  ]);
+  items.push({
+    itemCode,
+    itemDesc,
+    itemQuantity,
+  });
+  itemIndex++;
+}
+
+setSubject(`Print stock requisition`);
+
+const itemsRows = items.reduce((output, item) => {
+  return (
+    output +
+    `
+      <tr>
+        <td style="
+          text-align: left;
+          padding: ${metrics.halfSpacer}
+        ">${item.itemCode}</td>
+        <td style="
+          text-align: left;
+          padding: ${metrics.halfSpacer}
+        ">${item.itemDesc}</td>
+        <td style="
+          text-align: right;
+          padding: ${metrics.halfSpacer}
+        ">${item.itemQuantity}</td>
+      </tr>
+    `
+  );
+}, "");
+
+return template`
+  <heading>
+    Print order requisition
+  </heading>
+
+  <block>
+    <p>
+      Order ID: ${orderID}<br />
+      Project name: ${projectName}<br />
+      Due date for stock: ${dueDate}
+    </p>
+  </block>
+
+  <table style="
+    border-collapse: collapse;
+    width: 100%;
+  ">
+    <thead>
+      <tr>
+        <th style="
+          text-align: left;
+          padding: ${metrics.halfSpacer}
+        ">Item code</th>
+        <th style="
+          text-align: left;
+          padding: ${metrics.halfSpacer}
+        ">Item description</th>
+        <th style="
+          text-align: right;
+          padding: ${metrics.halfSpacer}
+        ">Item quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${itemsRows}
+    </tbody>
+  </table>
 `;
 
 };
