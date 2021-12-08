@@ -77,12 +77,11 @@ const setSubject = (value) => {
 };
 
 const clearRecipients = (field) => {
-  for (let pill of this.mWindow.document
+  this.mWindow.document
     .getElementById(`${field}AddrInput`)
     .closest(".address-container")
-    .querySelectorAll("mail-address-pill")) {
-    pill.remove();
-  }
+    .querySelectorAll("mail-address-pill")
+    .forEach((pill) => pill.remove());
 };
 
 const addRecipients = (field, recipients) => {
