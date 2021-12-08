@@ -76,6 +76,24 @@ const setSubject = (value) => {
   this.mWindow.document.getElementById("msgSubject").value = value;
 };
 
+const clearRecipients = (field) => {
+  for (let pill of this.mWindow.document
+    .getElementById(`${field}AddrInput`)
+    .closest(".address-container")
+    .querySelectorAll("mail-address-pill")) {
+    pill.remove();
+  }
+};
+
+const addRecipients = (field, recipients) => {
+  this.mWindow.awAddRecipientsArray(`addr_${field}`, recipients);
+};
+
+const setTo = (value) => {
+  clearRecipients("to");
+  addRecipients("to", [value]);
+};
+
 const getFrom = () => this.mQuicktext.get_from(["email"]);
 
 const parseOrderIDFromSubject = () => {
@@ -1772,6 +1790,7 @@ templates.supplier_requests__CouriersPleaseRedelivery = () => {
 const [consignmentID] = getInputs([{ label: "Consignment number" }]);
 
 setSubject(`Redeliver consignment`);
+setTo(`contact@couriersplease.com.au`);
 
 return template`
     <heading>

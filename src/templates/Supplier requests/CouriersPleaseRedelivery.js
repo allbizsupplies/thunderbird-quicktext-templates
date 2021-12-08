@@ -5,6 +5,7 @@
 const [consignmentID] = getInputs([{ label: "Consignment number" }]);
 
 setSubject(`Redeliver consignment`);
+setTo(`contact@couriersplease.com.au`);
 
 return template`
     <heading>
