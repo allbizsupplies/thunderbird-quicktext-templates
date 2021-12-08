@@ -3,6 +3,7 @@
  */
 
 setSubject(`Account application`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <p>

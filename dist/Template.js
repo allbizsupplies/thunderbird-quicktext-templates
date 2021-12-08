@@ -721,6 +721,7 @@ templates.internal_accounts__AccountApplication = () => {
  */
 
 setSubject(`Account application`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <p>
@@ -752,6 +753,7 @@ const [paymentAmount, repName] = getInputs([
 ]);
 
 setSubject(`Account payment taken in cash`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <p>
@@ -791,6 +793,7 @@ const [name, phoneNumber, repName] = getInputs([
 ]);
 
 setSubject(`Phone message`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>
@@ -828,6 +831,7 @@ const [accountNumber, accountName] = getInputs([
 ]);
 
 setSubject(`Update customer contact details`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>
@@ -862,6 +866,7 @@ const [accountNumber, accountName] = getInputs([
 ]);
 
 setSubject(`Update customer delivery address`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>
@@ -918,6 +923,7 @@ const deliveryInstructions = deliveryInstructionsValue.other
   : deliveryInstructionsValue.label;
 
 setSubject(`Update customer delivery instructions`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>
@@ -970,6 +976,7 @@ while (true) {
 }
 
 setSubject(`Print stock requisition`);
+setTo(`purch@allbizsupplies.biz`);
 
 const itemsRows = items.reduce((output, item) => {
   return (

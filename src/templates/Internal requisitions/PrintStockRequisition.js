@@ -28,6 +28,7 @@ while (true) {
 }
 
 setSubject(`Print stock requisition`);
+setTo(`purch@allbizsupplies.biz`);
 
 const itemsRows = items.reduce((output, item) => {
   return (

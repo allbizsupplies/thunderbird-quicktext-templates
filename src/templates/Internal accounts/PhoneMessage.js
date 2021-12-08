@@ -9,6 +9,7 @@ const [name, phoneNumber, repName] = getInputs([
 ]);
 
 setSubject(`Phone message`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>

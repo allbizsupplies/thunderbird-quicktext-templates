@@ -8,6 +8,7 @@ const [accountNumber, accountName] = getInputs([
 ]);
 
 setSubject(`Update customer delivery address`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>

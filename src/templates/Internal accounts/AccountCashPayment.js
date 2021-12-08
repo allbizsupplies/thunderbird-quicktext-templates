@@ -19,6 +19,7 @@ const [paymentAmount, repName] = getInputs([
 ]);
 
 setSubject(`Account payment taken in cash`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <p>

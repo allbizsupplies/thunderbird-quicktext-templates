@@ -31,6 +31,7 @@ const deliveryInstructions = deliveryInstructionsValue.other
   : deliveryInstructionsValue.label;
 
 setSubject(`Update customer delivery instructions`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>

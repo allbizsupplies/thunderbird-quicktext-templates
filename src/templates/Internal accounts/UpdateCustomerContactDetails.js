@@ -8,6 +8,7 @@ const [accountNumber, accountName] = getInputs([
 ]);
 
 setSubject(`Update customer contact details`);
+setTo(`accounts@allbizsupplies.biz`);
 
 return template`
   <heading>
