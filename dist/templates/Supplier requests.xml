@@ -5,6 +5,10 @@
 <title><![CDATA[Supplier requests]]></title>
 <texts>
 <text shortcut="" type="1">
+<name><![CDATA[Couriers Please: redeliver consignment]]></name>
+<body><![CDATA[[[SCRIPT=Template|supplier_requests__CouriersPleaseRedelivery]]]]></body>
+</text>
+<text shortcut="" type="1">
 <name><![CDATA[ETA request]]></name>
 <body><![CDATA[[[SCRIPT=Template|supplier_requests__ETARequest]]]]></body>
 </text>
