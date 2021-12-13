@@ -413,7 +413,9 @@ const Components = {
       `)}
 
       ${Components.p(`
-        Please email us a remittance advice so we can proceed with your order.
+        <strong>Please email a remittance advice to ${
+          attributes["email"] || `accounts@allbizsupplies.biz`
+        }so we can proceed with your order.</strong>
       `)}
     `)}
 
@@ -1161,7 +1163,7 @@ return template`
     Please pay a 50% deposit (or the full amount of the invoice) so we can start your order. 
   </p>
 
-  <payment-options order-id="${orderID}" />
+  <payment-options order-id="${orderID}" email="print@allbizsupplies.biz" />
 `;
 
 };
