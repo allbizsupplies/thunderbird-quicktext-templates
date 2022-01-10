@@ -5,7 +5,7 @@ JavaScript-based templates for Thunderbird's Quicktext addon.
 ## How to setup these templates for automatic import
 
 1. Download this project
-2. Move the `dist` folder somewhere that everyone can access it, such as `S:\AE ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist`
+2. Move the `dist` folder somewhere that everyone can access it, such as `S:\AE ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist`
 3. In Thunderbird, open Quicktext's settings (under Tools > Quicktext in the menu bar).
 4. In the Quicktext window, select the General tab if it isn't already open.
 5. In the 'Import on startup' input box, enter a list of paths to the script and template import files, separated by semicolons.
@@ -13,7 +13,7 @@ JavaScript-based templates for Thunderbird's Quicktext addon.
 Here's an example where the folder has been put on the local fileserver, and all templates are being imported:
 
 ```
-S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\scripts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Account notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Internal accounts.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Internal requisitions.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Print order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Stat order notifications.xml;S:\AE   ALLBIZ INTERNAL\Allbiz Team\thunderbird-quicktext-templates\dist\templates\Supplier requests.xml
+S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\scripts.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Account notifications.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Internal accounts.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Internal requisitions.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Print order notifications.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Stat order notifications.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Supplier requests.xml
 ```
 
 This spaghetti imports six files:
