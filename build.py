@@ -7,6 +7,7 @@ import xml
 
 
 SRC_DIR = "./src"
+DIST_DIR = "./dist"
 
 TEMPLATE_DIR = os.path.join(SRC_DIR, "templates")
 
@@ -17,18 +18,18 @@ class TemplateType:
 
 
 def main():
-    if not os.path.exists("./dist"):
-        os.mkdir("dist")
-    if not os.path.exists("./dist/templates"):
-        os.mkdir("./dist/templates")
+    if not os.path.exists(DIST_DIR):
+        os.mkdir(DIST_DIR)
+    if not os.path.exists(f"{DIST_DIR}/templates"):
+        os.mkdir(f"{DIST_DIR}/templates")
     menus, scripts = collect_templates()
-    with open(os.path.join("./dist", "Template.js"), "w") as file:
+    with open(os.path.join(DIST_DIR, "Template.js"), "w") as file:
         file.write(compile_template_scripts(scripts))
-    with open(os.path.join("./dist", "scripts.xml"), "w") as file:
+    with open(os.path.join(DIST_DIR, "scripts.xml"), "w") as file:
         document = render_scripts(scripts)
         file.write(document)
     for menu in menus:
-        with open(os.path.join("./dist", "templates", menu["title"] + ".xml"), "w") as file:
+        with open(os.path.join(DIST_DIR, "templates", menu["title"] + ".xml"), "w") as file:
             document = render_templates(menu)
             file.write(document)
 
