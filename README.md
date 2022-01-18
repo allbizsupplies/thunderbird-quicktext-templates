@@ -16,7 +16,7 @@ Here's an example where the folder has been put on the local fileserver, and all
 S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\scripts.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Account notifications.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Internal accounts.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Internal requisitions.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Print order notifications.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Stat order notifications.xml;S:\AE   ALLBIZ INTERNAL\email\thunderbird-quicktext-templates\dist\templates\Supplier requests.xml
 ```
 
-This spaghetti imports six files:
+This spaghetti imports seven files:
 
 - `scripts.xml`, which imports the `Template` script. This is the only file that is always required.
 - `templates/Account notifications.xml`, the templates for customer account notifications.
