@@ -17,10 +17,6 @@
 <body><![CDATA[[[SCRIPT=Template|account_notifications__AccountCreated]]]]></body>
 </text>
 <text shortcut="" type="1">
-<name><![CDATA[Credit account opened]]></name>
-<body><![CDATA[[[SCRIPT=Template|account_notifications__CreditAccountOpened]]]]></body>
-</text>
-<text shortcut="" type="1">
 <name><![CDATA[Invoice]]></name>
 <body><![CDATA[[[SCRIPT=Template|account_notifications__InvoiceArrached]]]]></body>
 </text>

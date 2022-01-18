@@ -33,9 +33,11 @@ Any given user probably doesn't need all of these templates on their email clien
 ### Account notifications
 
 - **About Allbiz Supplies**: Some text introducing Allbiz to a new or prospective customer
+- **Account created**: Notifies a customer that their credit account had been opened, and includes instructions on how to use that account on Allbiz's online shop.
 - **Credit account application**: A message to accompany an attached account application form, with instructions on how to return the form. (You still have to manually attach the PDF form.)
-- **Credit account opened**: Notifies a customer that their credit account had been opened, and includes instructions on how to use that account on Allbiz's online shop.
 - **Invoice**: A brief message to accompany an attached invoice.
+- **User account created**: Notifies user that their online shop login has been created.
+- **Request user details for website login**: Requests an email and name to be used to create an online shop login.
 
 ### Internal accounts
 
