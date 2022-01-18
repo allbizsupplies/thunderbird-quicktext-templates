@@ -87,4 +87,5 @@ return template`
     so we can set up the artwork for you. We charge $${setupHourlyCharge}
     per hour for artwork design and setup.
   </p>
+  <br/>
 `;

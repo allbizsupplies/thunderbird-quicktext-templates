@@ -20,4 +20,5 @@ return template`
   <p>
     Please contact us if you need us to deliver this order to you.
   </p>
+  <br/>
 `;

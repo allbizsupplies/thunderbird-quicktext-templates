@@ -24,4 +24,5 @@ return template`
   <p>
     Your order has been dispatched.
   </p>
+  <br/>
 `;

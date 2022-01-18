@@ -35,4 +35,5 @@ return template`
   </p>
 
   <payment-options order-id="${orderID}" email="print@allbizsupplies.biz" />
+  <br/>
 `;

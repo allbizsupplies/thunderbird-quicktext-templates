@@ -28,4 +28,5 @@ return template`
     Phone:<br />
     Email:
   </p>
+  <br/>
 `;

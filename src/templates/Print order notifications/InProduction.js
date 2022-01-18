@@ -31,4 +31,5 @@ return template`
     estimated-completion-date="${estimatedCompletionDate}"
     offer-service-priority-upgrade=""
   />
+  <br/>
 `;

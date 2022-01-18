@@ -5,19 +5,20 @@
 setSubject(`Price and availability`);
 
 return template`
-<heading>
-  Quote request
-</heading>
+  <heading>
+    Quote request
+  </heading>
 
-<p>
-  Please provide a price and availability for the following items:
-</p>
+  <p>
+    Please provide a price and availability for the following items:
+  </p>
 
-<ul>
-  <li></li>
-</ul>
+  <ul>
+    <li></li>
+  </ul>
 
-<p>
-  Thank you.
-</p>
+  <p>
+    Thank you.
+  </p>
+  <br/>
 `;

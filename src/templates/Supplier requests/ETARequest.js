@@ -22,4 +22,5 @@ return template`
   <p>
     Thank you.
   </p>
+  <br/>
 `;

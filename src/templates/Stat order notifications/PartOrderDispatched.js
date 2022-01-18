@@ -53,4 +53,5 @@ return isRemainder
       We will dispatch the remainder of your order once the items
       are ready to ship.
     </p>
+    <br/>
   `;

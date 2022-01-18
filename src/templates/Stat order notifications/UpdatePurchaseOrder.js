@@ -26,4 +26,5 @@ return template`
   <p>
     Please update your purchase order to match the attached ${attachmentType.label}.
   </p>
+  <br/>
 `;

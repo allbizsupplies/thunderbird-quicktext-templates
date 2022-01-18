@@ -12,4 +12,5 @@ return template`
   <p>
     Please find your quotation attached.
   </p>
+  <br/>
 `;

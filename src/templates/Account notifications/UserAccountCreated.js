@@ -43,5 +43,5 @@ return template`
       ("purchase order") instead of paying on credit card.
     </li>
   </ol>
-
+  <br/>
  `;

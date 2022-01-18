@@ -12,4 +12,5 @@ return template`
   <p>
     Please find your invoice attached.
   </p>
+  <br/>
 `;

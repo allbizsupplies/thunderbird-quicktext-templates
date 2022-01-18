@@ -24,4 +24,5 @@ return template`
   <p>
     Your order is ready to collect. Please contact us if you need us to deliver it to you.
   </p>
+  <br/>
 `;

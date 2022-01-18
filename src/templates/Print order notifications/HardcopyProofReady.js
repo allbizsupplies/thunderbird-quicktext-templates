@@ -74,4 +74,5 @@ return template`
       </table>
     </td>
   </tr>
+  <br/>
 `;

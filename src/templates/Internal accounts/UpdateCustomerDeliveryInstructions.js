@@ -49,4 +49,5 @@ return template`
     <strong>New delivery instructions:</strong><br />
     ${deliveryInstructions}
   </p>
+  <br/>
 `;

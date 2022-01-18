@@ -77,5 +77,5 @@ return template`
       instead of paying on credit card.
     </li>
   </ol>
-
+  <br/>
  `;

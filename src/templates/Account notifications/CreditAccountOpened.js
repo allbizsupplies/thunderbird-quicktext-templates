@@ -37,4 +37,5 @@ return template`
     just reply to this email and let us know the email address and contact 
     name you would like to use for your login.
   </p>
+  <br/>
 `;

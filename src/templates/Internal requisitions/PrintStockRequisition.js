@@ -89,4 +89,5 @@ return template`
       ${itemsRows}
     </tbody>
   </table>
+  <br/>
 `;

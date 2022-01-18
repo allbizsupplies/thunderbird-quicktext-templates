@@ -6,12 +6,9 @@ const [invoiceNumber] = getInputs([
   { label: "Invoice number (leave blank if not applicable)" },
 ]);
 
-const [accountNumber, accountName] = invoiceNumber 
+const [accountNumber, accountName] = invoiceNumber
   ? ["", ""]
-  : getInputs([
-    { label: "Account number" },
-    { label: "Account name" },
-  ]);
+  : getInputs([{ label: "Account number" }, { label: "Account name" }]);
 
 const [paymentAmount, repName] = getInputs([
   { label: "Payment amount" },
@@ -29,11 +26,12 @@ return template`
   <block>  
     <p>
       <strong>Payment details:</strong><br />
-      ${invoiceNumber
-        ? `
+      ${
+        invoiceNumber
+          ? `
           Invoice number: ${invoiceNumber}<br />
         `
-        : `
+          : `
           Invoice number: N/A (customer paying off account balance)<br />
           Account number: ${accountNumber}<br />
           Account name: ${accountName}<br />
@@ -43,4 +41,5 @@ return template`
       Taken by: ${repName}
     </p>
   </block>
+  <br/>
 `;

@@ -528,6 +528,7 @@ return template`
       <a href="https://shop.allbizsupplies.biz/">shop.allbizsupplies.biz</a>
     </p>
   </block>
+  <br/>
 `;
 
 };
@@ -564,6 +565,7 @@ return template`
       Lonsdale SA 5160
     </p>
   </block>
+  <br/>
 `;
 
 };
@@ -648,7 +650,7 @@ return template`
       instead of paying on credit card.
     </li>
   </ol>
-
+  <br/>
  `;
 
 };
@@ -693,6 +695,7 @@ return template`
     just reply to this email and let us know the email address and contact 
     name you would like to use for your login.
   </p>
+  <br/>
 `;
 
 };
@@ -712,6 +715,7 @@ return template`
   <p>
     Please find your invoice attached.
   </p>
+  <br/>
 `;
 
 };
@@ -762,7 +766,7 @@ return template`
       ("purchase order") instead of paying on credit card.
     </li>
   </ol>
-
+  <br/>
  `;
 
 };
@@ -807,7 +811,7 @@ return template`
     Once we create your user account, we will send you an email with your
     login details.
   </p>
-
+  <br/>
  `;
 
 };
@@ -824,6 +828,7 @@ return template`
   <p>
     Customer's account application is attached.
   </p>
+  <br/>
 `;
 
 };
@@ -837,12 +842,9 @@ const [invoiceNumber] = getInputs([
   { label: "Invoice number (leave blank if not applicable)" },
 ]);
 
-const [accountNumber, accountName] = invoiceNumber 
+const [accountNumber, accountName] = invoiceNumber
   ? ["", ""]
-  : getInputs([
-    { label: "Account number" },
-    { label: "Account name" },
-  ]);
+  : getInputs([{ label: "Account number" }, { label: "Account name" }]);
 
 const [paymentAmount, repName] = getInputs([
   { label: "Payment amount" },
@@ -860,11 +862,12 @@ return template`
   <block>  
     <p>
       <strong>Payment details:</strong><br />
-      ${invoiceNumber
-        ? `
+      ${
+        invoiceNumber
+          ? `
           Invoice number: ${invoiceNumber}<br />
         `
-        : `
+          : `
           Invoice number: N/A (customer paying off account balance)<br />
           Account number: ${accountNumber}<br />
           Account name: ${accountName}<br />
@@ -874,6 +877,7 @@ return template`
       Taken by: ${repName}
     </p>
   </block>
+  <br/>
 `;
 
 };
@@ -912,7 +916,9 @@ return template`
     <strong>Message:</strong><br />
   </p>
 
-  <p></p>
+  <br/>
+  <br/>
+  <br/>
 `;
 
 };
@@ -948,6 +954,7 @@ return template`
     Phone:<br />
     Email:
   </p>
+  <br/>
 `;
 
 };
@@ -981,7 +988,9 @@ return template`
     <strong>New delivery address:</strong>
   </p>
 
-  <p></p>
+  <br/>
+  <br/>
+  <br/>
 `;
 
 };
@@ -1038,6 +1047,7 @@ return template`
     <strong>New delivery instructions:</strong><br />
     ${deliveryInstructions}
   </p>
+  <br/>
 `;
 
 };
@@ -1134,6 +1144,7 @@ return template`
       ${itemsRows}
     </tbody>
   </table>
+  <br/>
 `;
 
 };
@@ -1176,6 +1187,7 @@ return template`
   <ul>
     <li></li>
   </ul>
+  <br/>
 `;
 
 };
@@ -1218,6 +1230,7 @@ return template`
   <ul>
     <li></li>
   </ul>
+  <br/>
 `;
 
 };
@@ -1260,6 +1273,7 @@ return template`
   </p>
 
   <payment-options order-id="${orderID}" email="print@allbizsupplies.biz" />
+  <br/>
 `;
 
 };
@@ -1354,6 +1368,7 @@ return template`
     so we can set up the artwork for you. We charge $${setupHourlyCharge}
     per hour for artwork design and setup.
   </p>
+  <br/>
 `;
 
 };
@@ -1435,6 +1450,7 @@ return template`
       </table>
     </td>
   </tr>
+  <br/>
 `;
 
 };
@@ -1473,6 +1489,7 @@ return template`
     estimated-completion-date="${estimatedCompletionDate}"
     offer-service-priority-upgrade=""
   />
+  <br/>
 `;
 
 };
@@ -1504,6 +1521,7 @@ return template`
   <p>
     Your order has been dispatched.
   </p>
+  <br/>
 `;
 
 };
@@ -1535,6 +1553,7 @@ return template`
   <p>
     Your order is ready to collect. Please contact us if you need us to deliver it to you.
   </p>
+  <br/>
 `;
 
 };
@@ -1598,6 +1617,7 @@ return isRemainder
       We will dispatch the remainder of your order once the items
       are ready to ship.
     </p>
+    <br/>
   `;
 
 };
@@ -1705,6 +1725,7 @@ return template`
       </table>
     </td>
   </tr>
+  <br/>
 `;
 
 };
@@ -1732,6 +1753,7 @@ return template`
   <p>
     Please contact us if you need us to deliver this order to you.
   </p>
+  <br/>
 `;
 
 };
@@ -1792,6 +1814,7 @@ return isRemainder
       We will dispatch the remainder of your order once the items
       are ready to ship.
     </p>
+    <br/>
   `;
 
 };
@@ -1811,6 +1834,7 @@ return template`
   <p>
     Please find your quotation attached.
   </p>
+  <br/>
 `;
 
 };
@@ -1844,6 +1868,7 @@ return template`
   <p>
     Please update your purchase order to match the attached ${attachmentType.label}.
   </p>
+  <br/>
 `;
 
 };
@@ -1882,6 +1907,7 @@ return template`
   </block>
 
   <payment-options order-id="${orderID}" />
+  <br/>
 `;
 
 };
@@ -1897,20 +1923,21 @@ setSubject(`Redeliver consignment`);
 setTo(`contact@couriersplease.com.au`);
 
 return template`
-    <heading>
-        Redeliver consignment
-    </heading>
+  <heading>
+    Redeliver consignment
+  </heading>
 
-    <block>
-        <p>Consignment ID: <strong>${consignmentID}</strong></p>
-    </block>
+  <block>
+    <p>Consignment ID: <strong>${consignmentID}</strong></p>
+  </block>
 
-    <p>
-        <strong>New delivery instructions:</strong>
-        <br />
-        <br />
-        <br />
-    </p>
+  <p>
+    <strong>New delivery instructions:</strong>
+    <br />
+    <br />
+    <br />
+  </p>
+  <br/>
 `;
 
 };
@@ -1940,6 +1967,7 @@ return template`
   <p>
     Thank you.
   </p>
+  <br/>
 `;
 
 };
@@ -1952,21 +1980,22 @@ templates.supplier_requests__QuoteRequest = () => {
 setSubject(`Price and availability`);
 
 return template`
-<heading>
-  Quote request
-</heading>
+  <heading>
+    Quote request
+  </heading>
 
-<p>
-  Please provide a price and availability for the following items:
-</p>
+  <p>
+    Please provide a price and availability for the following items:
+  </p>
 
-<ul>
-  <li></li>
-</ul>
+  <ul>
+    <li></li>
+  </ul>
 
-<p>
-  Thank you.
-</p>
+  <p>
+    Thank you.
+  </p>
+  <br/>
 `;
 
 };

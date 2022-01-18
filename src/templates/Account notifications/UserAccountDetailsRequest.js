@@ -37,5 +37,5 @@ return template`
     Once we create your user account, we will send you an email with your
     login details.
   </p>
-
+  <br/>
  `;

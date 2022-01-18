@@ -31,4 +31,5 @@ return template`
   </block>
 
   <payment-options order-id="${orderID}" />
+  <br/>
 `;

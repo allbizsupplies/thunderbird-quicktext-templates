@@ -31,5 +31,7 @@ return template`
     <strong>Message:</strong><br />
   </p>
 
-  <p></p>
+  <br/>
+  <br/>
+  <br/>
 `;

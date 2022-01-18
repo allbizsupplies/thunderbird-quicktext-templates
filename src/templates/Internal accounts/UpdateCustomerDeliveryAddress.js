@@ -26,5 +26,7 @@ return template`
     <strong>New delivery address:</strong>
   </p>
 
-  <p></p>
+  <br/>
+  <br/>
+  <br/>
 `;
