@@ -24,6 +24,14 @@
 <name><![CDATA[Invoice]]></name>
 <body><![CDATA[[[SCRIPT=Template|account_notifications__InvoiceArrached]]]]></body>
 </text>
+<text shortcut="" type="1">
+<name><![CDATA[User account created]]></name>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__UserAccountCreated]]]]></body>
+</text>
+<text shortcut="" type="1">
+<name><![CDATA[Request user details for website login]]></name>
+<body><![CDATA[[[SCRIPT=Template|account_notifications__UserAccountDetailsRequest]]]]></body>
+</text>
 </texts>
 </menu>
 </quicktext>
