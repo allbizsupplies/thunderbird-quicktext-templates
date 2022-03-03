@@ -1334,12 +1334,6 @@ return template`
     We need a deposit payment for your order
   </heading>
 
-  <print-order-details
-    order-id="${orderID}"
-    project-name="${projectName}"
-    service-priority="${servicePriority}"
-  />
-
   <p>
     Your invoice is attached.
   </p>
@@ -1347,6 +1341,12 @@ return template`
   <p>
     Please pay a 50% deposit (or the full amount of the invoice) so we can start your order. 
   </p>
+
+  <print-order-details
+    order-id="${orderID}"
+    project-name="${projectName}"
+    service-priority="${servicePriority}"
+  />
 
   <payment-options order-id="${orderID}" email="print@allbizsupplies.biz" />
   <br/>
