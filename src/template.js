@@ -415,7 +415,7 @@ const Components = {
       ${Components.p(`
         <strong>Please email a remittance advice to ${
           attributes["email"] || `accounts@allbizsupplies.biz`
-        }so we can proceed with your order.</strong>
+        } so we can proceed with your order.</strong>
       `)}
     `)}
 
