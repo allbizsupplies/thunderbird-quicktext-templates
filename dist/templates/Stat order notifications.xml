@@ -5,6 +5,10 @@
 <title><![CDATA[Stat order notifications]]></title>
 <texts>
 <text shortcut="" type="1">
+<name><![CDATA[Invoice payment required]]></name>
+<body><![CDATA[[[SCRIPT=Template|stat_order_notifications__InvoicePaymentRequired]]]]></body>
+</text>
+<text shortcut="" type="1">
 <name><![CDATA[Order ready to collect]]></name>
 <body><![CDATA[[[SCRIPT=Template|stat_order_notifications__OrderReadyToCollect]]]]></body>
 </text>

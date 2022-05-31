@@ -413,9 +413,12 @@ const Components = {
       `)}
 
       ${Components.p(`
-        <strong>Please email a remittance advice to ${
+        <strong>Please email a remittance advice to <a href="mailto:${
           attributes["email"] || `accounts@allbizsupplies.biz`
-        } so we can proceed with your order.</strong>
+        }">
+        ${
+          attributes["email"] || `accounts@allbizsupplies.biz`
+        }</a> so we can proceed with your order.</strong>
       `)}
     `)}
 
@@ -447,9 +450,9 @@ const Components = {
           It may take several days to process your account application.
         `)}
         ${Components.li(`
-          Email us at <a href="mailto:accounts@allbizsupplies.biz">
-            print@allbizsupplies.biz
-          </a>
+          Email us at <a href="mailto:${
+            attributes["email"] || `accounts@allbizsupplies.biz`
+          }">${attributes["email"] || `accounts@allbizsupplies.biz`}</a>
           and tell us that you have submitted an account application. We'll
           proceed with your order once you account application has been
           processed.
